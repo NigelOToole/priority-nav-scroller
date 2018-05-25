@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Priority Nav Scroller - Priority+ navigation in a scrollable container with controls</title>
+
+    <link rel="stylesheet" href="styles/site.css">
+    <link rel="stylesheet" href="styles/priority-nav-scroller.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cutive+Mono|Lato:300,400">
+  </head>
+
+  <body>
+
+  <header class="header">
+    <div class="container">
+
+      <h1 class="logo-text">Priority Nav Scroller</h1>
+
+      <div class="header--links">
+        <a href="https://github.com/NigelOToole/priority-nav-scroller/archive/master.zip" class="btn btn-white">Download</a>
+        <a href="https://github.com/NigelOToole/priority-nav-scroller" target="_blank" rel="noopener" class="btn btn-white">View on GitHub</a>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="demo demo--intro container">
+    <h2>Priority Nav Scroller</h2>
+    <p>Priority+ navigation pattern which hides items that dont fit on screen in a scrollable container with controls.</p>
+  </div>
+
+
+  <div class="container demo">
+    <h2>Examples</h2>
+
+    <h3>Large amount of links</h3>
+
+    <div class="nav-scroller-wrapper">
+
+      <div class="nav-scroller-logo">Logo</div>
+
+      <!-- <div class="new-wrapper-3"> -->
+
+        <nav class="nav-scroller">
+
+          <div class="nav-scroller-content">
+            <a href="#" class="nav-scroller-item">Chairs</a>
+            <a href="#" class="nav-scroller-item">Tables</a>
+            <a href="#" class="nav-scroller-item">Cookware</a>
+            <a href="#" class="nav-scroller-item">Beds</a>
+            <a href="#" class="nav-scroller-item">Desks</a>
+            <a href="#" class="nav-scroller-item">Flooring</a>
+            <a href="#" class="nav-scroller-item">Lighting</a>
+            <a href="#" class="nav-scroller-item">Mattresses</a>
+            <a href="#" class="nav-scroller-item">Solar Panels</a>
+            <a href="#" class="nav-scroller-item">Bookcases</a>
+            <a href="#" class="nav-scroller-item">Mirrors</a>
+            <a href="#" class="nav-scroller-item">Rugs</a>
+            <a href="#" class="nav-scroller-item">Curtains &amp; Blinds</a>
+            <a href="#" class="nav-scroller-item">Frames &amp; Pictures</a>
+            <a href="#" class="nav-scroller-item">Wardrobes</a>
+            <a href="#" class="nav-scroller-item">Storage</a>
+            <a href="#" class="nav-scroller-item">Decoration</a>
+            <a href="#" class="nav-scroller-item">Appliances</a>
+            <a href="#" class="nav-scroller-item">Racks</a>
+            <a href="#" class="nav-scroller-item">Worktops</a>
+          </div>
+
+          <button class="nav-scroller-btn nav-scroller-btn--left">
+            <svg class="icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 16l4.736-4.768 11.264-11.232 4.736 4.736-11.232 11.264 11.232 11.264-4.736 4.736-11.264-11.264z"></path></svg>
+          </button>
+
+          <button class="nav-scroller-btn nav-scroller-btn--right">
+            <svg class="icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 27.264l11.264-11.264-11.264-11.264 4.736-4.736 11.264 11.232 4.736 4.768-16 16z"></path></svg>
+          </button>
+
+        </nav>
+
+        <!-- <button class="nav-scroller-btn nav-scroller-btn--left">
+          <svg class="icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 16l4.736-4.768 11.264-11.232 4.736 4.736-11.232 11.264 11.232 11.264-4.736 4.736-11.264-11.264z"></path></svg>
+        </button>
+
+        <button class="nav-scroller-btn nav-scroller-btn--right">
+          <svg class="icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 27.264l11.264-11.264-11.264-11.264 4.736-4.736 11.264 11.232 4.736 4.768-16 16z"></path></svg>
+        </button> -->
+
+      <!-- </div> -->
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="container">
+
+    <div class="demo install">
+      <h2>Installation</h2>
+
+<pre>
+<code>$ npm install direction-reveal --save-dev</code>
+</pre>
+
+    </div>
+
+
+    <div class="demo usage">
+      <h2>Usage</h2>
+
+      <h3>Import</h3>
+
+      <p>The script is an ES6(ES2015) module but a compiled version is included in the build as index.js. You can also copy scripts/direction-reveal.js into your own site if your build process can accomodate ES6 modules, Babel and Browserify are used in the demo site.</p>
+
+<pre><code>import DirectionReveal from 'direction-reveal';
+
+// Init with default setup
+const directionRevealDemo = DirectionReveal();
+
+// Init with all options at default setting
+const directionRevealSwing = DirectionReveal({
+  selector: '.direction-reveal',              // Container element selector.
+  itemSelector: '.direction-reveal__card',    // Item element selector.
+  animationName: 'swing',                     // Animation CSS class.
+  enableTouch: true,                          // Adds touch event to show content on first click then follow link on the second click.
+  touchThreshold: 250                         // Touch length must be less than this to trigger reveal which prevents the event triggering if user is scrolling.
+});
+</code></pre>
+
+
+      <h3>Markup</h3>
+
+<pre><code>&lt;div class="direction-reveal"&gt;
+
+  &lt;a href="#" class="direction-reveal__card"&gt;
+    &lt;img src="images/image.jpg" alt="Image" class="img-fluid"&gt;
+
+    &lt;div class="direction-reveal__overlay direction-reveal__anim--in"&gt;
+      &lt;h3 class="direction-reveal__title"&gt;Title&lt;/h3&gt;
+      &lt;p class="direction-reveal__text"&gt;Description text.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+
+  ...
+
+&lt;/div&gt;
+</code></pre>
+
+
+      <h3>Using other tags</h3>
+
+      <p>The demos use &lt;a&gt; tags for the "direction-reveal__card" but a &lt;div&gt; can be used as below, specifiying the tabindex ensures keyboard navigation works as expected. They can all have a value of 0 and will follow the source order of the divs.</p>
+
+<pre><code>&lt;div class="direction-reveal__card" tabindex="0"&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+
+<h3>Styles</h3>
+
+    <p>Import the styles into your project directly from the node_modules as below or copy the styles into your own project, you will need styles/direction-reveal.scss, styles/_animations.scss and styles/_variables.scss. There is also a compiled CSS file you can use, styles/direction-reveal.css.</p>
+
+<pre><code>@import "node_modules/direction-reveal/styles/direction-reveal.scss";</code></pre>
+
+
+      <h3>Touch support</h3>
+
+      <p>The plugin will detect touch support and reveal the hidden content on first click then follow link on the second click. This can be disabled with the option enableTouch.</p>
+
+
+      <h3>Browser support</h3>
+
+      <p>Supports all modern browsers(Firefox, Chrome and Edge) released as of January 2018. For older browsers you may need to include polyfills for <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach" target="_blank" rel="noopener">Nodelist.forEach</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList" target="_blank" rel="noopener">Element.classList</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="noopener">Passive Event Listeners</a>.</p>
+
+    </div>
+
+
+    <div class="demo">
+      <h2>Demo site</h2>
+      <p>Clone or download from Github.</p>
+
+<pre><code>$ npm install
+$ gulp serve
+</code></pre>
+
+    </div>
+
+  </div>
+
+
+  <div class="container">
+    <p>Inspired by a codepen from <a href="https://codepen.io/noeldelgado/pen/pGwFx" target="_blank" rel="noopener">Noel Delgado</a>, this <a href="https://stackoverflow.com/a/3647634" target="_blank" rel="noopener">Stack overflow answer</a> and the article <a href="https://www.kirupa.com/html5/get_element_position_using_javascript.htm" target="_blank" rel="noopener">Get an Element's postion using javascript</a>.<br><a href="https://unsplash.com" target="_blank" rel="noopener">Images from Unsplash.</a>
+    </p>
+  </div>
+
+
+  <footer class="footer">
+    <div class="container">
+      Made by Nigel O Toole <a href="http://www.purestructure.com" target="_blank" rel="noopener">pure structure</a>
+    </div>
+  </footer>
+
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/bundle.js"></script>
+    <!-- endbuild -->
+
+  </body>
+</html>

@@ -1,0 +1,57 @@
+{
+  "name": "priority-nav-scroller",
+  "description": "Priority+ navigation pattern which hides items that dont fit on screen in a scrollable container with controls.",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NigelOToole/priority-nav-scroller.git"
+  },
+  "keywords": [
+    "priority+",
+    "priority",
+    "responsive",
+    "navigation",
+    "scoller",
+    "scrolling"
+  ],
+  "author": "Nigel O Toole <pure@purestructure.com> (http://www.purestructure.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NigelOToole/priority-nav-scroller/issues"
+  },
+  "homepage": "https://github.com/NigelOToole/priority-nav-scroller#readme",
+  "engines": {
+    "node": ">=4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-register": "^6.5.2",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.2.1",
+    "browserify": "^14.4.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.1",
+    "gulp-babel": "^6.1.1",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-uglify": "^2.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    }
+  }
+}
