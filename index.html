@@ -187,8 +187,6 @@
 
 
 
-
-
   <div class="container demo">
 
     <h3>Align nav right</h3>
@@ -257,66 +255,71 @@
 
       <p>The script is an ES6(ES2015) module but a compiled version is included in the build as index.js. You can also copy scripts/priority-nav-scroller.js into your own site if your build process can accomodate ES6 modules, Babel and Browserify are used in the demo site.</p>
 
-      /**
-      Horizontal scrolling menu.
-
-      @param {Object} object - Container for all options.
-      @param {string || DOM node} selector - Element selector.
-      @param {string} navSelector - Nav element selector.
-      @param {string} contentSelector - Content element selector.
-      @param {string} itemSelector - Item elements selector.
-      @param {string} buttonLeftSelector - Left button selector.
-      @param {string} buttonRightSelector - Right button selector.
-      @param {integer} scrollStep - Amount to scroll on button click.
-
-    **/
-
-
-    const priorityNavScroller = function({
-        selector: selector = '.nav-scroller',
-        navSelector: navSelector = '.nav-scroller-nav',
-        contentSelector: contentSelector = '.nav-scroller-content',
-        itemSelector: itemSelector = '.nav-scroller-item',
-        buttonLeftSelector: buttonLeftSelector = '.nav-scroller-btn--left',
-        buttonRightSelector: buttonRightSelector = '.nav-scroller-btn--right',
-        scrollStep: scrollStep = 75
-      } = {}) {
-
-
-
-
 <pre><code>import priorityNavScroller from 'priority-nav-scroller';
 
 // Init with default setup
-const directionRevealDemo = DirectionReveal();
+const navScrollerDefault = PriorityNavScroller();
 
 // Init with all options at default setting
-const priorityNavScrollerDefault = priorityNavScroller({
+const priorityNavScrollerDefault = PriorityNavScroller({
+  // {string || DOM node} - Element selector
   selector: '.nav-scroller',
+
+  {string} - Nav element selector.
   navSelector: '.nav-scroller-nav',
+
+  {string} - Content element selector.
   contentSelector: '.nav-scroller-content',
+
+  {string} - Items selector.
   itemSelector: '.nav-scroller-item',
+
+  {string} - Left button selector.
   buttonLeftSelector: '.nav-scroller-btn--left',
+
+  {string} - Right button selector.
   buttonRightSelector: '.nav-scroller-btn--right',
+
+  {integer} - Amount to scroll on button click.
   scrollStep: 75
 });
+
+// Init multiple nav scrollers with the same options
+let navScrollers = document.querySelectorAll('.nav-scroller');
+
+navScrollers.forEach((currentValue, currentIndex) => {
+  PriorityNavScroller({
+    selector: currentValue
+  });
+});
+
 </code></pre>
 
 
       <h3>Markup</h3>
 
-<pre><code>&lt;div class="direction-reveal"&gt;
+<pre><code>&lt;div class="nav-scroller"&gt;
 
-  &lt;a href="#" class="direction-reveal__card"&gt;
-    &lt;img src="images/image.jpg" alt="Image" class="img-fluid"&gt;
+  &lt;nav class="nav-scroller-nav"&gt;
 
-    &lt;div class="direction-reveal__overlay direction-reveal__anim--in"&gt;
-      &lt;h3 class="direction-reveal__title"&gt;Title&lt;/h3&gt;
-      &lt;p class="direction-reveal__text"&gt;Description text.&lt;/p&gt;
+    &lt;div class="nav-scroller-controls"&gt;
+      &lt;button class="nav-scroller-btn nav-scroller-btn--left"&gt;
+        ...
+      &lt;/button&gt;
+
+      &lt;button class="nav-scroller-btn nav-scroller-btn--right"&gt;
+        ...
+      &lt;/button&gt;
     &lt;/div&gt;
-  &lt;/a&gt;
 
-  ...
+    &lt;div class="nav-scroller-content"&gt;
+      &lt;a href="#" class="nav-scroller-item"&gt;Item 1&lt;/a&gt;
+      &lt;a href="#" class="nav-scroller-item"&gt;Item 2&lt;/a&gt;
+      &lt;a href="#" class="nav-scroller-item"&gt;Item 3&lt;/a&gt;
+      ...
+    &lt;/div&gt;
+
+  &lt;/nav&gt;
 
 &lt;/div&gt;
 </code></pre>
@@ -324,11 +327,11 @@ const priorityNavScrollerDefault = priorityNavScroller({
 
       <h3>Using other tags</h3>
 
-      <p>The demos use &lt;a&gt; tags for the "direction-reveal__card" but a &lt;div&gt; can be used as below, specifiying the tabindex ensures keyboard navigation works as expected. They can all have a value of 0 and will follow the source order of the divs.</p>
+      <p>The demos use a &lt;div&gt; for "nav-scroller-content" and &lt;a&gt; tags for the "nav-scroller-item" but you can also use a &lt;ul&gt; as below</p>
 
-<pre><code>&lt;div class="direction-reveal__card" tabindex="0"&gt;
-  ...
-&lt;/div&gt;
+<pre><code>&lt;ul class="nav-scroller-content"&gt;
+    &lt;li class="nav-scroller-item"&gt;&lt;a href="#" class="nav-scroller-item"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+    ...
 </code></pre>
 
 

@@ -1,8 +1,5 @@
 $nav-scroller-btn-size: 44px;
-
-
-// https://benfrain.com/a-horizontal-scrolling-navigation-pattern-for-touch-and-mouse-with-moving-current-indicator/
-
+$nav-scroller-scrollbar: 30px;
 
 .nav-scroller {
   position: relative;
@@ -25,13 +22,12 @@ $nav-scroller-btn-size: 44px;
     overflow-y: hidden;
     z-index: 1;
     align-self: center;
-    padding-bottom: 30px; // Hide scrollbar
-    margin-bottom: -30px; // Hide scrollbar
+    padding-bottom: $nav-scroller-scrollbar; // Hide scrollbar
+    margin-bottom: -$nav-scroller-scrollbar; // Hide scrollbar
   }
 
     .nav-scroller-content {
       position: relative;
-      // display: flex;
       display: inline-flex;
       align-items: center;
       white-space: nowrap;
@@ -41,6 +37,12 @@ $nav-scroller-btn-size: 44px;
       &.no-transition {
         transition: none;
       }
+    }
+
+    ul.nav-scroller-content {
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
       .nav-scroller-item {
@@ -79,6 +81,10 @@ $nav-scroller-btn-size: 44px;
         color: #666;
       }
 
+      &:focus {
+        outline: 0;
+      }
+
       &:not(.active) {
         opacity: 0;
         pointer-events: none;
@@ -95,7 +101,7 @@ $nav-scroller-btn-size: 44px;
 
 
 
-// The buttonare always visible and inline rather than hidden
+// Bbutton always visible and inline rather than hidden and overlaid on the nav
 .nav-scroller--controls-inline {
 
   .nav-scroller-content {
@@ -111,7 +117,7 @@ $nav-scroller-btn-size: 44px;
 
 }
 
-// The control will expand to fill available space
+// Nav expand to fill available space
 .nav-scroller--expand {
 
   .nav-scroller-nav {
@@ -119,7 +125,7 @@ $nav-scroller-btn-size: 44px;
   }
 }
 
-// Alight the nav to the right
+// Nav aligns to the right
 .nav-scroller--right {
 
   .nav-scroller-nav {

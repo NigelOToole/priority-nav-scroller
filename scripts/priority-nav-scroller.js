@@ -1,11 +1,11 @@
 /**
-  Horizontal scrolling menu.
+  Priority+ horizontal scrolling menu.
 
   @param {Object} object - Container for all options.
   @param {string || DOM node} selector - Element selector.
   @param {string} navSelector - Nav element selector.
   @param {string} contentSelector - Content element selector.
-  @param {string} itemSelector - Item elements selector.
+  @param {string} itemSelector - Items selector.
   @param {string} buttonLeftSelector - Left button selector.
   @param {string} buttonRightSelector - Right button selector.
   @param {integer} scrollStep - Amount to scroll on button click.
@@ -13,7 +13,7 @@
 **/
 
 
-const priorityNavScroller = function({
+const PriorityNavScroller = function({
     selector: selector = '.nav-scroller',
     navSelector: navSelector = '.nav-scroller-nav',
     contentSelector: contentSelector = '.nav-scroller-content',
@@ -43,43 +43,17 @@ const priorityNavScroller = function({
   let scrollOverflow = '';
   let timeout;
 
-  let intersectionOptions = {
-    root: navScrollerNav, // relative to document viewport
-    rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
-    threshold: 1.0 // visible amount of item shown in relation to root
-  };
-
-  let observer = new IntersectionObserver(interectionChange, intersectionOptions);
-
 
   // Sets overflow and toggle buttons accordingly
   const setOverflow = function() {
     scrollOverflow = getOverflow();
     toggleButtons(scrollOverflow);
-    console.log(scrollOverflow);
   }
-
-
-  function interectionChange(changes, observer) {
-    changes.forEach(change => {
-      setOverflow();
-
-      if (change.intersectionRatio > 0) {
-        console.log('overlap');
-        setOverflow();
-      }
-    });
-  }
-
-  observer.observe(navScrollerContentItems[0]);
-  observer.observe(navScrollerContentItems[navScrollerContentItems.length - 1]);
 
 
   // Debounce setting the overflow with requestAnimationFrame
   const requestSetOverflow = function() {
-    if (timeout) {
-      window.cancelAnimationFrame(timeout);
-    }
+    if (timeout) window.cancelAnimationFrame(timeout);
 
     timeout = window.requestAnimationFrame(() => {
       setOverflow();
@@ -98,8 +72,6 @@ const priorityNavScroller = function({
 
     let scrollLeftCondition = scrollAvailableLeft > 0;
     let scrollRightCondition = scrollAvailableRight > 0;
-
-    // console.log(scrollWidth, scrollViewport, scrollLeft, scrollAvailableLeft, scrollAvailableRight);
 
     if (scrollLeftCondition && scrollRightCondition) {
       return 'both';
@@ -163,40 +135,38 @@ const priorityNavScroller = function({
 
   // Toggle buttons depending on overflow
   const toggleButtons = function(overflow) {
-    navScrollerLeft.classList.remove('active');
-    navScrollerRight.classList.remove('active');
-
     if (overflow === 'both' || overflow === 'left') {
       navScrollerLeft.classList.add('active');
+    }
+    else {
+      navScrollerLeft.classList.remove('active');
     }
 
     if (overflow === 'both' || overflow === 'right') {
       navScrollerRight.classList.add('active');
     }
+    else {
+      navScrollerRight.classList.remove('active');
+    }
   }
 
 
+  // Init plugin
   const init = function() {
-
-    // Determine scroll overflow
     setOverflow();
 
-    // // Resize listener
-    // window.addEventListener('resize', () => {
-    //   requestSetOverflow();
-    // });
+    window.addEventListener('resize', () => {
+      requestSetOverflow();
+    });
 
-    // // Scroll listener
-    // navScrollerNav.addEventListener('scroll', () => {
-    //   requestSetOverflow();
-    // });
+    navScrollerNav.addEventListener('scroll', () => {
+      requestSetOverflow();
+    });
 
-    // Set scroller position
     navScrollerContent.addEventListener('transitionend', () => {
       setScrollerPosition();
     });
 
-    // Button listeners
     navScrollerLeft.addEventListener('click', () => {
       moveScroller('left');
     });
@@ -204,7 +174,6 @@ const priorityNavScroller = function({
     navScrollerRight.addEventListener('click', () => {
       moveScroller('right');
     });
-
   };
 
 
@@ -219,4 +188,4 @@ const priorityNavScroller = function({
 
 };
 
-export default priorityNavScroller;
+export default PriorityNavScroller;
