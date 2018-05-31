@@ -83,29 +83,34 @@ var priorityNavScroller = function priorityNavScroller() {
   var scrollOverflow = '';
   var timeout = void 0;
 
-  // let ioOptions = {
-  //   root: navScrollerNav, // relative to document viewport
-  //   rootMargin: `0px`, // margin around root. Values are similar to css property. Unitless values not allowed
-  //   threshold: 1.0 // visible amount of item shown in relation to root
-  // };
-  // let observer = new IntersectionObserver(onChange, ioOptions);
+  var intersectionOptions = {
+    root: navScrollerNav, // relative to document viewport
+    rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
+    threshold: 1.0 // visible amount of item shown in relation to root
+  };
 
-  // function onChange(changes, observer) {
-  //   changes.forEach(change => {
-  //       if (change.intersectionRatio > 0) {
-  //         console.log('overlap');
-  //       }
-  //   });
-  // }
-
-  // observer.observe(navScrollerContentItems[0]);
+  var observer = new IntersectionObserver(interectionChange, intersectionOptions);
 
   // Sets overflow and toggle buttons accordingly
   var setOverflow = function setOverflow() {
     scrollOverflow = getOverflow();
-    // console.log(scrollOverflow, getOverflow2());
     toggleButtons(scrollOverflow);
+    console.log(scrollOverflow);
   };
+
+  function interectionChange(changes, observer) {
+    changes.forEach(function (change) {
+      setOverflow();
+
+      if (change.intersectionRatio > 0) {
+        console.log('overlap');
+        setOverflow();
+      }
+    });
+  }
+
+  observer.observe(navScrollerContentItems[0]);
+  observer.observe(navScrollerContentItems[navScrollerContentItems.length - 1]);
 
   // Debounce setting the overflow with requestAnimationFrame
   var requestSetOverflow = function requestSetOverflow() {
@@ -117,39 +122,6 @@ var priorityNavScroller = function priorityNavScroller() {
       setOverflow();
     });
   };
-
-  // // Gets the overflow on the nav scroller (left, right or both)
-  // const getOverflow = function() {
-  //   let containerMetrics = navScrollerNav.getBoundingClientRect();
-  //   let containerWidth = Math.floor(containerMetrics.width);
-  //   let containerMetricsLeft = Math.floor(containerMetrics.left);
-  //   let containerMetricsRight = Math.floor(containerMetrics.right);
-
-  //   let contentMetricsFirst = navScrollerContentItems[0].getBoundingClientRect();
-  //   let contentMetricsLast = navScrollerContentItems[navScrollerContentItems.length - 1].getBoundingClientRect();
-  //   let contentMetricsLeft = Math.floor(contentMetricsFirst.left);
-  //   let contentMetricsRight = Math.floor(contentMetricsLast.right);
-
-  //   scrollAvailableLeft = navScrollerNav.scrollLeft;
-  //   scrollAvailableRight = contentMetricsRight - containerMetricsRight;
-
-  //   // Offset the values by the left value of the container
-  //   let offset = containerMetricsLeft;
-  //   containerMetricsLeft -= offset;
-  //   contentMetricsRight -= offset + 1; // Fixes an off by one bug in iOS
-  //   contentMetricsLeft -= offset;
-
-  //   if (containerMetricsLeft > contentMetricsLeft && containerWidth < contentMetricsRight) {
-  //       return 'both';
-  //   } else if (contentMetricsLeft < containerMetricsLeft) {
-  //       return 'left';
-  //   } else if (contentMetricsRight > containerWidth) {
-  //       return 'right';
-  //   } else {
-  //       return 'none';
-  //   }
-  // }
-
 
   // Gets the overflow on the nav scroller (left, right or both)
   var getOverflow = function getOverflow() {
@@ -163,6 +135,8 @@ var priorityNavScroller = function priorityNavScroller() {
     var scrollLeftCondition = scrollAvailableLeft > 0;
     var scrollRightCondition = scrollAvailableRight > 0;
 
+    // console.log(scrollWidth, scrollViewport, scrollLeft, scrollAvailableLeft, scrollAvailableRight);
+
     if (scrollLeftCondition && scrollRightCondition) {
       return 'both';
     } else if (scrollLeftCondition) {
@@ -172,8 +146,6 @@ var priorityNavScroller = function priorityNavScroller() {
     } else {
       return 'none';
     }
-
-    // console.log(scrollWidth, scrollViewport, scrollLeft, scrollAvailableLeft, scrollAvailableRight);
   };
 
   // Move the scroller with a transform
@@ -237,15 +209,15 @@ var priorityNavScroller = function priorityNavScroller() {
     // Determine scroll overflow
     setOverflow();
 
-    // Resize listener
-    window.addEventListener('resize', function () {
-      requestSetOverflow();
-    });
+    // // Resize listener
+    // window.addEventListener('resize', () => {
+    //   requestSetOverflow();
+    // });
 
-    // Scroll listener
-    navScrollerNav.addEventListener('scroll', function () {
-      requestSetOverflow();
-    });
+    // // Scroll listener
+    // navScrollerNav.addEventListener('scroll', () => {
+    //   requestSetOverflow();
+    // });
 
     // Set scroller position
     navScrollerContent.addEventListener('transitionend', function () {

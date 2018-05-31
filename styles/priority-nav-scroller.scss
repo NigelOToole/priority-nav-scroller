@@ -31,8 +31,8 @@ $nav-scroller-btn-size: 44px;
 
     .nav-scroller-content {
       position: relative;
-      display: flex;
-      // display: inline-flex; // Needed to create new block formatting context
+      // display: flex;
+      display: inline-flex;
       align-items: center;
       white-space: nowrap;
       min-height: $nav-scroller-btn-size; // Ensures full button is visible
