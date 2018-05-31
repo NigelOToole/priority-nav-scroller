@@ -2,183 +2,127 @@ $nav-scroller-btn-size: 44px;
 
 
 // https://benfrain.com/a-horizontal-scrolling-navigation-pattern-for-touch-and-mouse-with-moving-current-indicator/
-// https://codepen.io/benfrain/pen/zZZLaP
-.nav-scroller-wrapper {
+
+
+.nav-scroller {
   position: relative;
   overflow: hidden;
   display: flex;
-  min-height: $nav-scroller-btn-size;
+  background-color: #f5f5f5;
 }
 
-// // Put the scroller buttons inline
-// .nav-scroller--inline-controls {
-//   .nav-scroller-wrapper {
-//     padding: 0 $nav-scroller-btn-size;
-//   }
-// }
+  .nav-scroller-logo {
+    display: inline-block;
+    padding: .5rem;
+    margin-right: 1rem;
+    font-size: 1.75rem;
+    font-weight: bold;
+  }
 
-// .nav-scroller--overlay-controls {
-//   .nav-scroller-content {
-//     padding: 0 $nav-scroller-btn-size;
-//   }
-// }
-
-
-  .nav-scroller {
+  .nav-scroller-nav {
     position: relative;
     overflow-x: auto;
     overflow-y: hidden;
     z-index: 1;
-    padding: 0 $nav-scroller-btn-size;
-    // Hide scrollbar
-    padding-bottom: 20px;
-    margin-bottom: -20px;
+    align-self: center;
+    padding-bottom: 30px; // Hide scrollbar
+    margin-bottom: -30px; // Hide scrollbar
   }
-
 
     .nav-scroller-content {
       position: relative;
       display: flex;
-      justify-content: space-around;
+      // display: inline-flex; // Needed to create new block formatting context
+      align-items: center;
       white-space: nowrap;
-      float: left;
-      width: min-content;
-      min-width: 100%;
+      min-height: $nav-scroller-btn-size; // Ensures full button is visible
       transition: transform .3s ease-in-out;
-    }
 
-    .no-transition {
-      transition: none;
+      &.no-transition {
+        transition: none;
+      }
     }
-
 
       .nav-scroller-item {
+        flex: 1 0 auto;
         display: block;
         font-size: 1.125rem;
-        text-transform: uppercase;
         text-align: center;
-        padding: .5rem 1rem;
+        padding: .2rem 1rem;
+
+        &:not(:last-child) {
+          border-right: 1px solid #ddd;
+        }
       }
 
+  .nav-scroller-controls {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+  }
+
+    .nav-scroller-btn {
+      position: absolute;
+      top: 0;
+      z-index: 10;
+      width: $nav-scroller-btn-size;
+      height: $nav-scroller-btn-size;
+      padding: .5rem;
+      font-size: 1.25rem;
+      color: #000;
+      background: #fff;
+      border: 1px solid #ddd;
+      transition: color .3s, opacity .3s;
+      cursor: pointer;
+
+      &:hover {
+        color: #666;
+      }
+
+      &:not(.active) {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    .nav-scroller-btn--left {
+      left: 0;
+    }
+
+    .nav-scroller-btn--right {
+      right: 0;
+    }
+
+
+
+// The buttonare always visible and inline rather than hidden
+.nav-scroller--controls-inline {
+
+  .nav-scroller-content {
+    padding: 0 $nav-scroller-btn-size;
+  }
 
   .nav-scroller-btn {
-    // position: absolute;
-    position: sticky;
-    top: 0;
-    margin-top: -$nav-scroller-btn-size;
-    z-index: 10;
-    width: $nav-scroller-btn-size;
-    height: $nav-scroller-btn-size;
-    padding: .5rem;
-    font-size: 1.25rem;
-    color: #000;
-    background: #fff;
-    border: 1px solid #ddd;
-    transition: color .3s, opacity .3s;
-
-    &:hover {
-      color: #333;
-    }
-
     &:not(.active) {
       color: #ddd;
-      pointer-events: none;
+      opacity: 1;
     }
   }
 
-  .nav-scroller-btn--left {
-    left: 0;
-  }
-
-  .nav-scroller-btn--right {
-    // right: 0;
-    left: 100%;
-  }
-
-
-
-
-
-
-  .nav-scroller-wrapper2 {
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    min-height: $nav-scroller-btn-size;
-  }
-
-    .nav-scroller2 {
-      position: relative;
-      overflow: hidden;
-      // display: flex;
-
-      // overflow-x: auto;
-      // overflow-y: hidden;
-      z-index: 1;
-      // white-space: nowrap;
-      // font-size: 0;
-
-      padding: 0 $nav-scroller-btn-size;
-    }
-
-      .nav-scroller-logo {
-        display: inline-block;
-        padding: .5rem 1rem;
-        margin-right: 1rem;
-      }
-
-      .nav-scroller-content2 {
-        overflow-x: auto;
-        overflow-y: hidden;
-        // Hide scrollbar
-        padding-bottom: 20px;
-        margin-bottom: -20px;
-
-        // position: relative;
-        display: flex;
-        // justify-content: space-around;
-        // float: left;
-        white-space: nowrap;
-        // width: min-content;
-        // min-width: 100%;
-        transition: transform .3s ease-in-out;
-      }
-
-
-
-.nav-scroller-wrapper3 {
-  position: relative;
-  display: flex;
-  overflow: hidden;
-  min-height: $nav-scroller-btn-size;
 }
 
-  .new-wrapper-3 {
-    position: relative;
-    overflow: hidden;
+// The control will expand to fill available space
+.nav-scroller--expand {
+
+  .nav-scroller-nav {
+    width: 100%;
   }
+}
 
-  .nav-scroller3 {
-    position: relative;
-    overflow-x: auto;
-    overflow-y: hidden;
-    z-index: 1;
-    white-space: nowrap;
-    font-size: 0;
+// Alight the nav to the right
+.nav-scroller--right {
 
-    // Hide scrollbar
-    padding-bottom: 20px;
-    margin-bottom: -20px;
+  .nav-scroller-nav {
+    margin-left: auto;
   }
-
-
-    .nav-scroller-content3 {
-      position: relative;
-      display: flex;
-      // justify-content: space-around;
-      // float: left; // Fixes bug with justify content bugs
-      padding: 0 $nav-scroller-btn-size;
-      width: min-content;
-      min-width: 100%;
-      transition: transform .3s ease-in-out;
-    }
+}

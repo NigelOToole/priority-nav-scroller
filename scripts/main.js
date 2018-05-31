@@ -1,18 +1,21 @@
-import navScroller from './priority-nav-scroller.js';
+import priorityNavScroller from './priority-nav-scroller.js';
 
 // Example
-const navScrollerExample = navScroller({
-
+const navScrollerLinksLg = priorityNavScroller({
+  selector: '.nav-scroller--demo-links-lg'
 });
 
-// const navScrollerExample2 = navScroller({
-//   wrapperSelector: '.nav-scroller-wrapper2',
-//   selector: '.nav-scroller2',
-//   contentSelector: '.nav-scroller-content2'
+// const navScrollerLinksSm = priorityNavScroller({
+//   selector: '.nav-scroller--demo-links-sm'
 // });
 
-// const navScrollerExample3 = navScroller({
-//   wrapperSelector: '.nav-scroller-wrapper3',
-//   selector: '.nav-scroller3',
-//   contentSelector: '.nav-scroller-content3'
+
+
+// Init multiple nav scrollers with the same options
+// let navScrollers = document.querySelectorAll('.nav-scroller');
+
+// navScrollers.forEach((currentValue, currentIndex) => {
+//   priorityNavScroller({
+//     selector: currentValue
+//   });
 // });
