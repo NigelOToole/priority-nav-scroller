@@ -38,6 +38,7 @@ a {
 
 // Type
 h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
   font-weight: 300;
 }
 
@@ -147,7 +148,7 @@ pre {
     margin: 0;
 
     @media (max-width: 767px) {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
     }
     @media (min-width: 768px) {
       display: inline-block;

@@ -1,25 +1,24 @@
-$nav-scroller-btn-size: 44px;
+// ----- Varaibles -----
+$nav-scroller-btn-width: 44px;
+$nav-scroller-btn-height: 44px;
 $nav-scroller-scrollbar: 30px;
 
+
+
+// ----- Core styles -----
 .nav-scroller {
   position: relative;
   overflow: hidden;
   display: flex;
+  width: 100%;
   background-color: #f5f5f5;
 }
-
-  .nav-scroller-logo {
-    display: inline-block;
-    padding: .5rem;
-    margin-right: 1rem;
-    font-size: 1.75rem;
-    font-weight: bold;
-  }
 
   .nav-scroller-nav {
     position: relative;
     overflow-x: auto;
     overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
     z-index: 1;
     align-self: center;
     padding-bottom: $nav-scroller-scrollbar; // Hide scrollbar
@@ -29,9 +28,10 @@ $nav-scroller-scrollbar: 30px;
     .nav-scroller-content {
       position: relative;
       display: inline-flex;
+      display: flex;
       align-items: center;
       white-space: nowrap;
-      min-height: $nav-scroller-btn-size; // Ensures full button is visible
+      min-height: $nav-scroller-btn-height; // Ensures full button is visible
       transition: transform .3s ease-in-out;
 
       &.no-transition {
@@ -57,55 +57,68 @@ $nav-scroller-scrollbar: 30px;
         }
       }
 
-  .nav-scroller-controls {
-    position: sticky;
-    left: 0;
+  .nav-scroller-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 10;
+    width: $nav-scroller-btn-width;
+    height: $nav-scroller-btn-height;
+    padding: .5rem;
+    font-size: 1.25rem;
+    color: #000;
+    background: #fff;
+    border: 1px solid #ddd;
+    transition: color .3s, opacity .3s;
+    cursor: pointer;
+
+    &:hover {
+      color: #666;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:not(.active) {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 
-    .nav-scroller-btn {
-      position: absolute;
-      top: 0;
-      z-index: 10;
-      width: $nav-scroller-btn-size;
-      height: $nav-scroller-btn-size;
-      padding: .5rem;
-      font-size: 1.25rem;
-      color: #000;
-      background: #fff;
-      border: 1px solid #ddd;
-      transition: color .3s, opacity .3s;
-      cursor: pointer;
+  .nav-scroller-btn--left {
+    left: 0;
+  }
 
-      &:hover {
-        color: #666;
-      }
-
-      &:focus {
-        outline: 0;
-      }
-
-      &:not(.active) {
-        opacity: 0;
-        pointer-events: none;
-      }
-    }
-
-    .nav-scroller-btn--left {
-      left: 0;
-    }
-
-    .nav-scroller-btn--right {
-      right: 0;
-    }
+  .nav-scroller-btn--right {
+    right: 0;
+  }
 
 
 
-// Bbutton always visible and inline rather than hidden and overlaid on the nav
+// ----- Optional styles -----
+// Wrapper to put other elements inline with the scroller
+.nav-scroller-wrapper {
+  display: flex;
+  background-color: #f5f5f5;
+}
+
+  .nav-scroller-logo {
+    display: inline-block;
+    padding: .5rem;
+    margin-right: 1rem;
+    font-size: 1.75rem;
+    font-weight: bold;
+  }
+
+
+
+// ----- Variations -----
+// Buttons are always visible and inline rather than hidden and overlaid on the nav
 .nav-scroller--controls-inline {
 
   .nav-scroller-content {
-    padding: 0 $nav-scroller-btn-size;
+    padding: 0 $nav-scroller-btn-width;
   }
 
   .nav-scroller-btn {
@@ -117,10 +130,10 @@ $nav-scroller-scrollbar: 30px;
 
 }
 
-// Nav expand to fill available space
+// Nav expands to fill available space
 .nav-scroller--expand {
 
-  .nav-scroller-nav {
+  .nav-scroller-nav, .nav-scroller-content {
     width: 100%;
   }
 }
@@ -131,4 +144,12 @@ $nav-scroller-scrollbar: 30px;
   .nav-scroller-nav {
     margin-left: auto;
   }
+
+  .nav-scroller-controls {
+    position: absolute;
+    width: 100%;
+    // left: 0;
+    // z-index: 10;
+  }
+
 }

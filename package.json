@@ -1,7 +1,7 @@
 {
   "name": "priority-nav-scroller",
-  "description": "Priority+ navigation pattern which hides items that dont fit on screen in a scrollable container with controls.",
-  "version": "0.0.1",
+  "description": "A plugin for the priority+ navigation pattern. When the navigation items don’t fit on screen they are hidden in a horizontal scrollable container with controls.",
+  "version": "1.0.0",
   "main": "index.js",
   "dependencies": {},
   "scripts": {
@@ -16,7 +16,7 @@
     "priority",
     "responsive",
     "navigation",
-    "scoller",
+    "scroller",
     "scrolling"
   ],
   "author": "Nigel O Toole <pure@purestructure.com> (http://www.purestructure.com)",
