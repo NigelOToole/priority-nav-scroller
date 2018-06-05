@@ -26,8 +26,7 @@ var navScrollers = document.querySelectorAll('.nav-scroller');
 
 navScrollers.forEach(function (currentValue, currentIndex) {
   (0, _priorityNavScroller2.default)({
-    selector: currentValue,
-    scrollStep: 90
+    selector: currentValue
   });
 });
 
