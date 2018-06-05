@@ -49,7 +49,11 @@
 
     var navScroller = typeof selector === 'string' ? document.querySelector(selector) : selector;
 
-    if (navScroller === undefined || navScroller === null || !Number.isInteger(scrollStep) && scrollStep !== 'calc') {
+    var validateScrollStep = function validateScrollStep() {
+      return Number.isInteger(scrollStep) || scrollStep === 'average';
+    };
+
+    if (navScroller === undefined || navScroller === null || !validateScrollStep()) {
       throw new Error('There is something wrong with your selector.');
       return;
     }
@@ -71,6 +75,7 @@
     var setOverflow = function setOverflow() {
       scrollOverflow = getOverflow();
       toggleButtons(scrollOverflow);
+      calculateScrollStep();
     };
 
     // Debounce setting the overflow with requestAnimationFrame
@@ -91,7 +96,8 @@
       scrollAvailableLeft = scrollLeft;
       scrollAvailableRight = scrollWidth - (scrollViewport + scrollLeft);
 
-      var scrollLeftCondition = scrollAvailableLeft > 1; // 1 instead of 0 to compensate for rounding errors from the browser
+      // 1 instead of 0 to compensate for rounding errors from the browser
+      var scrollLeftCondition = scrollAvailableLeft > 1;
       var scrollRightCondition = scrollAvailableRight > 1;
 
       // console.log(scrollWidth, scrollViewport, scrollAvailableLeft, scrollAvailableRight);
@@ -109,12 +115,13 @@
 
     // Calculates the scroll step based on the width of the scroller and the number of links
     var calculateScrollStep = function calculateScrollStep() {
-      var scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent, null).getPropertyValue('padding-left'), 10) + parseInt(getComputedStyle(navScrollerContent, null).getPropertyValue('padding-right'), 10));
+      if (scrollStep === 'average') {
+        var scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent, null).getPropertyValue('padding-left'), 10) + parseInt(getComputedStyle(navScrollerContent, null).getPropertyValue('padding-right'), 10));
 
-      var scrollStepAverage = Math.floor(scrollViewportNoPadding / navScrollerContentItems.length);
+        var scrollStepAverage = Math.floor(scrollViewportNoPadding / navScrollerContentItems.length);
 
-      scrollStep = scrollStepAverage;
-      console.log(scrollStep);
+        scrollStep = scrollStepAverage;
+      }
     };
 
     // Move the scroller with a transform
@@ -177,8 +184,6 @@
     // Init plugin
     var init = function init() {
       setOverflow();
-
-      if (scrollStep === 'calc') calculateScrollStep();
 
       window.addEventListener('resize', function () {
         requestSetOverflow();

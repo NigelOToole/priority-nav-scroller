@@ -23,18 +23,22 @@ const PriorityNavScroller = function({
     scrollStep: scrollStep = 75
   } = {}) {
 
-  let navScroller = typeof selector === 'string' ? document.querySelector(selector) : selector;
+  const navScroller = typeof selector === 'string' ? document.querySelector(selector) : selector;
 
-  if (navScroller === undefined || navScroller === null || (!Number.isInteger(scrollStep) && scrollStep !== 'calc')) {
+  const validateScrollStep = function() {
+    return Number.isInteger(scrollStep) || scrollStep === 'average';
+  }
+
+  if (navScroller === undefined || navScroller === null || !validateScrollStep()) {
     throw new Error('There is something wrong with your selector.');
     return;
   }
 
-  let navScrollerNav = navScroller.querySelector(navSelector);
-  let navScrollerContent = navScroller.querySelector(contentSelector);
-  let navScrollerContentItems = navScrollerContent.querySelectorAll(itemSelector);
-  let navScrollerLeft = navScroller.querySelector(buttonLeftSelector);
-  let navScrollerRight = navScroller.querySelector(buttonRightSelector);
+  const navScrollerNav = navScroller.querySelector(navSelector);
+  const navScrollerContent = navScroller.querySelector(contentSelector);
+  const navScrollerContentItems = navScrollerContent.querySelectorAll(itemSelector);
+  const navScrollerLeft = navScroller.querySelector(buttonLeftSelector);
+  const navScrollerRight = navScroller.querySelector(buttonRightSelector);
 
   let scrolling = false;
   let scrollAvailableLeft = 0;
@@ -49,6 +53,7 @@ const PriorityNavScroller = function({
   const setOverflow = function() {
     scrollOverflow = getOverflow();
     toggleButtons(scrollOverflow);
+    calculateScrollStep();
   }
 
 
@@ -71,7 +76,8 @@ const PriorityNavScroller = function({
     scrollAvailableLeft = scrollLeft;
     scrollAvailableRight = scrollWidth - (scrollViewport + scrollLeft);
 
-    let scrollLeftCondition = scrollAvailableLeft > 1; // 1 instead of 0 to compensate for rounding errors from the browser
+    // 1 instead of 0 to compensate for rounding errors from the browser
+    let scrollLeftCondition = scrollAvailableLeft > 1;
     let scrollRightCondition = scrollAvailableRight > 1;
 
     // console.log(scrollWidth, scrollViewport, scrollAvailableLeft, scrollAvailableRight);
@@ -94,12 +100,13 @@ const PriorityNavScroller = function({
 
   // Calculates the scroll step based on the width of the scroller and the number of links
   const calculateScrollStep = function() {
-    let scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent,null).getPropertyValue('padding-left'), 10) + parseInt(getComputedStyle(navScrollerContent,null).getPropertyValue('padding-right'), 10));
+    if (scrollStep === 'average') {
+      let scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent,null).getPropertyValue('padding-left'), 10) + parseInt(getComputedStyle(navScrollerContent,null).getPropertyValue('padding-right'), 10));
 
-    let scrollStepAverage = Math.floor(scrollViewportNoPadding / navScrollerContentItems.length);
+      let scrollStepAverage = Math.floor(scrollViewportNoPadding / navScrollerContentItems.length);
 
-    scrollStep = scrollStepAverage;
-    console.log(scrollStep);
+      scrollStep = scrollStepAverage;
+    }
   }
 
 
@@ -168,8 +175,6 @@ const PriorityNavScroller = function({
   // Init plugin
   const init = function() {
     setOverflow();
-
-    if (scrollStep === 'calc') calculateScrollStep();
 
     window.addEventListener('resize', () => {
       requestSetOverflow();

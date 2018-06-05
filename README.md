@@ -53,7 +53,7 @@ navScrollers.forEach((currentValue, currentIndex) => {
 **itemSelector** {string} Items selector.
 **buttonLeftSelector** {string} Left button selector.
 **buttonRightSelector** {string} Right button selector.
-**scrollStep** {integer || string} Amount to scroll on button click. Pass in the string 'calc' to calulate the distance based on width and number of links.
+**scrollStep** {integer || string} Amount to scroll on button click. 'average' gets the average link width.
 
 
 
