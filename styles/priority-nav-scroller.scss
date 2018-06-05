@@ -21,18 +21,20 @@ $nav-scroller-scrollbar: 30px;
     -webkit-overflow-scrolling: touch;
     z-index: 1;
     align-self: center;
-    padding-bottom: $nav-scroller-scrollbar; // Hide scrollbar
-    margin-bottom: -$nav-scroller-scrollbar; // Hide scrollbar
+
+    // Hide scrollbar
+    padding-bottom: $nav-scroller-scrollbar;
+    margin-bottom: -$nav-scroller-scrollbar;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
   }
 
     .nav-scroller-content {
       position: relative;
       display: inline-flex;
-      display: flex;
       align-items: center;
       white-space: nowrap;
       min-height: $nav-scroller-btn-height; // Ensures full button is visible
-      transition: transform .3s ease-in-out;
+      transition: transform .25s cubic-bezier(0.645, 0.045, 0.355, 1.000); // easeInOutCubic
 
       &.no-transition {
         transition: none;
@@ -144,12 +146,4 @@ $nav-scroller-scrollbar: 30px;
   .nav-scroller-nav {
     margin-left: auto;
   }
-
-  .nav-scroller-controls {
-    position: absolute;
-    width: 100%;
-    // left: 0;
-    // z-index: 10;
-  }
-
 }

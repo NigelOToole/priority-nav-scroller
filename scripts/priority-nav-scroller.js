@@ -8,7 +8,7 @@
   @param {string} itemSelector - Items selector.
   @param {string} buttonLeftSelector - Left button selector.
   @param {string} buttonRightSelector - Right button selector.
-  @param {integer} scrollStep - Amount to scroll on button click.
+  @param {integer || string} scrollStep - Amount to scroll on button click.
 
 **/
 
@@ -25,7 +25,7 @@ const PriorityNavScroller = function({
 
   let navScroller = typeof selector === 'string' ? document.querySelector(selector) : selector;
 
-  if (navScroller === undefined || navScroller === null) {
+  if (navScroller === undefined || navScroller === null || (!Number.isInteger(scrollStep) && scrollStep !== 'calc')) {
     throw new Error('There is something wrong with your selector.');
     return;
   }
@@ -42,6 +42,7 @@ const PriorityNavScroller = function({
   let scrollingDirection = '';
   let scrollOverflow = '';
   let timeout;
+
 
 
   // Sets overflow and toggle buttons accordingly
@@ -70,8 +71,10 @@ const PriorityNavScroller = function({
     scrollAvailableLeft = scrollLeft;
     scrollAvailableRight = scrollWidth - (scrollViewport + scrollLeft);
 
-    let scrollLeftCondition = scrollAvailableLeft > 0;
-    let scrollRightCondition = scrollAvailableRight > 0;
+    let scrollLeftCondition = scrollAvailableLeft > 1; // 1 instead of 0 to compensate for rounding errors from the browser
+    let scrollRightCondition = scrollAvailableRight > 1;
+
+    // console.log(scrollWidth, scrollViewport, scrollAvailableLeft, scrollAvailableRight);
 
     if (scrollLeftCondition && scrollRightCondition) {
       return 'both';
@@ -89,6 +92,17 @@ const PriorityNavScroller = function({
   }
 
 
+  // Calculates the scroll step based on the width of the scroller and the number of links
+  const calculateScrollStep = function() {
+    let scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent,null).getPropertyValue('padding-left'), 10) + parseInt(getComputedStyle(navScrollerContent,null).getPropertyValue('padding-right'), 10));
+
+    let scrollStepAverage = Math.floor(scrollViewportNoPadding / navScrollerContentItems.length);
+
+    scrollStep = scrollStepAverage;
+    console.log(scrollStep);
+  }
+
+
   // Move the scroller with a transform
   const moveScroller = function(direction) {
 
@@ -97,8 +111,8 @@ const PriorityNavScroller = function({
     let scrollDistance = scrollStep;
     let scrollAvailable = direction === 'left' ? scrollAvailableLeft : scrollAvailableRight;
 
-    // If there is less that 1.5 steps available then scroll the full way
-    if (scrollAvailable < (scrollStep * 1.5)) {
+    // If there is less that 1.75 steps available then scroll the full way
+    if (scrollAvailable < (scrollStep * 1.75)) {
       scrollDistance = scrollAvailable;
     }
 
@@ -154,6 +168,8 @@ const PriorityNavScroller = function({
   // Init plugin
   const init = function() {
     setOverflow();
+
+    if (scrollStep === 'calc') calculateScrollStep();
 
     window.addEventListener('resize', () => {
       requestSetOverflow();

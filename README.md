@@ -53,7 +53,7 @@ navScrollers.forEach((currentValue, currentIndex) => {
 **itemSelector** {string} Items selector.
 **buttonLeftSelector** {string} Left button selector.
 **buttonRightSelector** {string} Right button selector.
-**scrollStep** {integer} Amount to scroll on button click.
+**scrollStep** {integer || string} Amount to scroll on button click. Pass in the string 'calc' to calulate the distance based on width and number of links.
 
 
 
@@ -63,25 +63,21 @@ navScrollers.forEach((currentValue, currentIndex) => {
 <div class="nav-scroller">
 
   <nav class="nav-scroller-nav">
-
-    <div class="nav-scroller-controls">
-      <button class="nav-scroller-btn nav-scroller-btn--left">
-        ...
-      </button>
-
-      <button class="nav-scroller-btn nav-scroller-btn--right">
-        ...
-      </button>
-    </div>
-
     <div class="nav-scroller-content">
       <a href="#" class="nav-scroller-item">Item 1</a>
       <a href="#" class="nav-scroller-item">Item 2</a>
       <a href="#" class="nav-scroller-item">Item 3</a>
       ...
     </div>
-
   </nav>
+
+  <button class="nav-scroller-btn nav-scroller-btn--left">
+    ...
+  </button>
+
+  <button class="nav-scroller-btn nav-scroller-btn--right">
+    ...
+  </button>
 
 </div>
 ```

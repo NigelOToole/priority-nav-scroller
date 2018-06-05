@@ -255,7 +255,7 @@ navScrollers.forEach((currentValue, currentIndex) => {
 <p><strong>itemSelector</strong> {string}<br> Items selector.</p>
 <p><strong>buttonLeftSelector</strong> {string}<br> Left button selector.</p>
 <p><strong>buttonRightSelector</strong> {string}<br> Right button selector.</p>
-<p><strong>scrollStep</strong> {integer}<br> Amount to scroll on button click.</p>
+<p><strong>scrollStep</strong> {integer || string}<br> Amount to scroll on button click. Pass in the string 'calc' to calulate the distance based on width and number of links.</p>
 
 
     <h3>Markup</h3>
@@ -263,28 +263,25 @@ navScrollers.forEach((currentValue, currentIndex) => {
 <pre><code>&lt;div class="nav-scroller"&gt;
 
   &lt;nav class="nav-scroller-nav"&gt;
-
-    &lt;div class="nav-scroller-controls"&gt;
-      &lt;button class="nav-scroller-btn nav-scroller-btn--left"&gt;
-        ...
-      &lt;/button&gt;
-
-      &lt;button class="nav-scroller-btn nav-scroller-btn--right"&gt;
-        ...
-      &lt;/button&gt;
-    &lt;/div&gt;
-
     &lt;div class="nav-scroller-content"&gt;
       &lt;a href="#" class="nav-scroller-item"&gt;Item 1&lt;/a&gt;
       &lt;a href="#" class="nav-scroller-item"&gt;Item 2&lt;/a&gt;
       &lt;a href="#" class="nav-scroller-item"&gt;Item 3&lt;/a&gt;
       ...
     &lt;/div&gt;
-
   &lt;/nav&gt;
+
+  &lt;button class="nav-scroller-btn nav-scroller-btn--left"&gt;
+    ...
+  &lt;/button&gt;
+
+  &lt;button class="nav-scroller-btn nav-scroller-btn--right"&gt;
+    ...
+  &lt;/button&gt;
 
 &lt;/div&gt;
 </code></pre>
+
 
 
     <h3>Using other tags</h3>

@@ -26,7 +26,7 @@
     @param {string} itemSelector - Items selector.
     @param {string} buttonLeftSelector - Left button selector.
     @param {string} buttonRightSelector - Right button selector.
-    @param {integer} scrollStep - Amount to scroll on button click.
+    @param {integer || string} scrollStep - Amount to scroll on button click.
   
   **/
 
@@ -49,7 +49,7 @@
 
     var navScroller = typeof selector === 'string' ? document.querySelector(selector) : selector;
 
-    if (navScroller === undefined || navScroller === null) {
+    if (navScroller === undefined || navScroller === null || !Number.isInteger(scrollStep) && scrollStep !== 'calc') {
       throw new Error('There is something wrong with your selector.');
       return;
     }
@@ -91,8 +91,10 @@
       scrollAvailableLeft = scrollLeft;
       scrollAvailableRight = scrollWidth - (scrollViewport + scrollLeft);
 
-      var scrollLeftCondition = scrollAvailableLeft > 0;
-      var scrollRightCondition = scrollAvailableRight > 0;
+      var scrollLeftCondition = scrollAvailableLeft > 1; // 1 instead of 0 to compensate for rounding errors from the browser
+      var scrollRightCondition = scrollAvailableRight > 1;
+
+      // console.log(scrollWidth, scrollViewport, scrollAvailableLeft, scrollAvailableRight);
 
       if (scrollLeftCondition && scrollRightCondition) {
         return 'both';
@@ -105,6 +107,16 @@
       }
     };
 
+    // Calculates the scroll step based on the width of the scroller and the number of links
+    var calculateScrollStep = function calculateScrollStep() {
+      var scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent, null).getPropertyValue('padding-left'), 10) + parseInt(getComputedStyle(navScrollerContent, null).getPropertyValue('padding-right'), 10));
+
+      var scrollStepAverage = Math.floor(scrollViewportNoPadding / navScrollerContentItems.length);
+
+      scrollStep = scrollStepAverage;
+      console.log(scrollStep);
+    };
+
     // Move the scroller with a transform
     var moveScroller = function moveScroller(direction) {
 
@@ -113,8 +125,8 @@
       var scrollDistance = scrollStep;
       var scrollAvailable = direction === 'left' ? scrollAvailableLeft : scrollAvailableRight;
 
-      // If there is less that 1.5 steps available then scroll the full way
-      if (scrollAvailable < scrollStep * 1.5) {
+      // If there is less that 1.75 steps available then scroll the full way
+      if (scrollAvailable < scrollStep * 1.75) {
         scrollDistance = scrollAvailable;
       }
 
@@ -165,6 +177,8 @@
     // Init plugin
     var init = function init() {
       setOverflow();
+
+      if (scrollStep === 'calc') calculateScrollStep();
 
       window.addEventListener('resize', function () {
         requestSetOverflow();
