@@ -1,8 +1,8 @@
 # Priority Nav Scroller
 
-[Live demo](http://nigelotoole.github.io/priority-nav-scroller/)
-
 Priority Nav Scroller is a plugin for the priority+ navigation pattern. When the navigation items don’t fit on screen they are hidden in a horizontal scrollable container with controls.
+
+[Demo site](http://nigelotoole.github.io/priority-nav-scroller/)
 
 
 
@@ -45,7 +45,6 @@ navScrollers.forEach((currentValue, currentIndex) => {
 
 
 ### Options
-<h3>Options</h3>
 **selector** {string || DOM node} Element selector.
 **navSelector** {string} Nav element selector.
 **navSelector** {string} Nav element selector.
@@ -121,9 +120,9 @@ $ gulp serve
 
 
 ## Inspiration
-(https://benfrain.com/a-horizontal-scrolling-navigation-pattern-for-touch-and-mouse-with-moving-current-indicator/)[A horizontal scrolling navigation pattern for touch and mouse with moving current indicator] by Ben Frain.<br>
-(https://css-tricks.com/priority-navigation-scrolling-dropdowns/)[A Priority+ Navigation With Scrolling and Dropdowns] by Micah Miller-Eshleman on CSS-Tricks.
-(https://css-tricks.com/the-priority-navigation-pattern/)[The Priority+ Navigation Pattern] by Chris Coyier on CSS-Tricks.
+[A horizontal scrolling navigation pattern for touch and mouse with moving current indicator](https://benfrain.com/a-horizontal-scrolling-navigation-pattern-for-touch-and-mouse-with-moving-current-indicator/) by Ben Frain.
+[A Priority+ Navigation With Scrolling and Dropdowns](https://css-tricks.com/priority-navigation-scrolling-dropdowns/)[A Priority+ Navigation With Scrolling and Dropdowns] by Micah Miller-Eshleman on CSS-Tricks.
+[The Priority+ Navigation Pattern](https://css-tricks.com/the-priority-navigation-pattern/) by Chris Coyier on CSS-Tricks.
 
 
 
