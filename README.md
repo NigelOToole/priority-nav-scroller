@@ -45,13 +45,13 @@ navScrollers.forEach((currentValue, currentIndex) => {
 
 
 ### Options
-**selector** {string || DOM node} Element selector.
-**navSelector** {string} Nav element selector.
-**navSelector** {string} Nav element selector.
-**contentSelector** {string} Content element selector.
-**itemSelector** {string} Items selector.
-**buttonLeftSelector** {string} Left button selector.
-**buttonRightSelector** {string} Right button selector.
+**selector** {string || DOM node} Element selector. <br>
+**navSelector** {string} Nav element selector. <br>
+**navSelector** {string} Nav element selector.<br>
+**contentSelector** {string} Content element selector.<br>
+**itemSelector** {string} Items selector.<br>
+**buttonLeftSelector** {string} Left button selector.<br>
+**buttonRightSelector** {string} Right button selector.<br>
 **scrollStep** {integer || string} Amount to scroll on button click. 'average' gets the average link width.
 
 
@@ -120,8 +120,8 @@ $ gulp serve
 
 
 ## Inspiration
-[A horizontal scrolling navigation pattern for touch and mouse with moving current indicator](https://benfrain.com/a-horizontal-scrolling-navigation-pattern-for-touch-and-mouse-with-moving-current-indicator/) by Ben Frain.
-[A Priority+ Navigation With Scrolling and Dropdowns](https://css-tricks.com/priority-navigation-scrolling-dropdowns/) by Micah Miller-Eshleman on CSS-Tricks.
+[A horizontal scrolling navigation pattern for touch and mouse with moving current indicator](https://benfrain.com/a-horizontal-scrolling-navigation-pattern-for-touch-and-mouse-with-moving-current-indicator/) by Ben Frain.<br>
+[A Priority+ Navigation With Scrolling and Dropdowns](https://css-tricks.com/priority-navigation-scrolling-dropdowns/) by Micah Miller-Eshleman on CSS-Tricks.<br>
 [The Priority+ Navigation Pattern](https://css-tricks.com/the-priority-navigation-pattern/) by Chris Coyier on CSS-Tricks.
 
 
