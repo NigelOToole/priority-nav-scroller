@@ -121,7 +121,7 @@ $ gulp serve
 
 ## Inspiration
 [A horizontal scrolling navigation pattern for touch and mouse with moving current indicator](https://benfrain.com/a-horizontal-scrolling-navigation-pattern-for-touch-and-mouse-with-moving-current-indicator/) by Ben Frain.
-[A Priority+ Navigation With Scrolling and Dropdowns](https://css-tricks.com/priority-navigation-scrolling-dropdowns/)[A Priority+ Navigation With Scrolling and Dropdowns] by Micah Miller-Eshleman on CSS-Tricks.
+[A Priority+ Navigation With Scrolling and Dropdowns](https://css-tricks.com/priority-navigation-scrolling-dropdowns/) by Micah Miller-Eshleman on CSS-Tricks.
 [The Priority+ Navigation Pattern](https://css-tricks.com/the-priority-navigation-pattern/) by Chris Coyier on CSS-Tricks.
 
 
