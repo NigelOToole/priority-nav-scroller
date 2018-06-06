@@ -20,6 +20,7 @@ gulp.task('styles', () => {
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
     .pipe($.sourcemaps.write())
+    .pipe($.if('site.css', $.cssnano({ safe: true, autoprefixer: false })))
     .pipe(gulp.dest('styles'))
     .pipe(reload({stream: true}));
 });

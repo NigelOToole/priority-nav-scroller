@@ -6,12 +6,15 @@ $nav-scroller-scrollbar: 30px;
 
 
 // ----- Core styles -----
+.nav-scroller, .nav-scroller-wrapper {
+  display: flex;
+  background-color: #f9f9f9;
+}
+
 .nav-scroller {
   position: relative;
-  overflow: hidden;
-  display: flex;
   width: 100%;
-  background-color: #f5f5f5;
+  overflow: hidden;
 }
 
   .nav-scroller-nav {
@@ -101,8 +104,7 @@ $nav-scroller-scrollbar: 30px;
 // ----- Optional styles -----
 // Wrapper to put other elements inline with the scroller
 .nav-scroller-wrapper {
-  display: flex;
-  background-color: #f5f5f5;
+
 }
 
   .nav-scroller-logo {
