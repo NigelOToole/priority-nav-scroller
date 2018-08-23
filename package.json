@@ -1,7 +1,7 @@
 {
   "name": "priority-nav-scroller",
   "description": "A plugin for the priority+ navigation pattern. When the navigation items don’t fit on screen they are hidden in a horizontal scrollable container with controls.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "dependencies": {},
   "scripts": {

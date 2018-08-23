@@ -37,18 +37,16 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 /**
-  Priority+ horizontal scrolling menu.
-
-  @param {Object} object - Container for all options.
-  @param {string || DOM node} selector - Element selector.
-  @param {string} navSelector - Nav element selector.
-  @param {string} contentSelector - Content element selector.
-  @param {string} itemSelector - Items selector.
-  @param {string} buttonLeftSelector - Left button selector.
-  @param {string} buttonRightSelector - Right button selector.
-  @param {integer || string} scrollStep - Amount to scroll on button click.
-
-**/
+ * Priority+ horizontal scrolling menu.
+ * @param {Object} object - Container for all options.
+ * @param {string || DOM node} selector - Element selector.
+ * @param {string} navSelector - Nav element selector.
+ * @param {string} contentSelector - Content element selector.
+ * @param {string} itemSelector - Items selector.
+ * @param {string} buttonLeftSelector - Left button selector.
+ * @param {string} buttonRightSelector - Right button selector.
+ * @param {integer || string} scrollStep - Amount to scroll on button click.
+ */
 
 var PriorityNavScroller = function PriorityNavScroller() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
@@ -91,14 +89,14 @@ var PriorityNavScroller = function PriorityNavScroller() {
   var scrollOverflow = '';
   var timeout = void 0;
 
-  // Sets overflow and toggle buttons accordingly
+  /** Sets overflow and toggle buttons accordingly */
   var setOverflow = function setOverflow() {
     scrollOverflow = getOverflow();
     toggleButtons(scrollOverflow);
     calculateScrollStep();
   };
 
-  // Debounce setting the overflow with requestAnimationFrame
+  /** Debounce setting the overflow with requestAnimationFrame */
   var requestSetOverflow = function requestSetOverflow() {
     if (timeout) window.cancelAnimationFrame(timeout);
 
@@ -107,7 +105,10 @@ var PriorityNavScroller = function PriorityNavScroller() {
     });
   };
 
-  // Gets the overflow on the nav scroller (left, right or both)
+  /**
+   * Gets the overflow on the nav scroller
+   * @return {string} Left, right, both or none
+   */
   var getOverflow = function getOverflow() {
     var scrollWidth = navScrollerNav.scrollWidth;
     var scrollViewport = navScrollerNav.clientWidth;
@@ -133,7 +134,7 @@ var PriorityNavScroller = function PriorityNavScroller() {
     }
   };
 
-  // Calculates the scroll step based on the width of the scroller and the number of links
+  /** Calculates the scroll step based on the width of the scroller and the number of links */
   var calculateScrollStep = function calculateScrollStep() {
     if (scrollStep === 'average') {
       var scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent, null).getPropertyValue('padding-left'), 10) + parseInt(getComputedStyle(navScrollerContent, null).getPropertyValue('padding-right'), 10));
@@ -144,7 +145,7 @@ var PriorityNavScroller = function PriorityNavScroller() {
     }
   };
 
-  // Move the scroller with a transform
+  /** Move the scroller with a transform */
   var moveScroller = function moveScroller(direction) {
 
     if (scrolling === true || scrollOverflow !== direction && scrollOverflow !== 'both') return;
@@ -168,7 +169,7 @@ var PriorityNavScroller = function PriorityNavScroller() {
     scrolling = true;
   };
 
-  // Set the scroller position and removes transform, called after moveScroller()
+  /** Set the scroller position and removes transform, called after moveScroller() */
   var setScrollerPosition = function setScrollerPosition() {
     var style = window.getComputedStyle(navScrollerContent, null);
     var transform = style.getPropertyValue('transform');
@@ -186,7 +187,7 @@ var PriorityNavScroller = function PriorityNavScroller() {
     scrolling = false;
   };
 
-  // Toggle buttons depending on overflow
+  /** Toggle buttons depending on overflow */
   var toggleButtons = function toggleButtons(overflow) {
     if (overflow === 'both' || overflow === 'left') {
       navScrollerLeft.classList.add('active');
@@ -201,7 +202,7 @@ var PriorityNavScroller = function PriorityNavScroller() {
     }
   };
 
-  // Init plugin
+  /** Init plugin */
   var init = function init() {
     setOverflow();
 

@@ -149,3 +149,21 @@ $nav-scroller-scrollbar: 30px;
     margin-left: auto;
   }
 }
+
+// CSS scroll snap points is used to align the links on manual scroll not on button click. https://css-tricks.com/practical-css-scroll-snapping/
+.nav-scroller--snap {
+
+  .nav-scroller-nav {
+    scroll-snap-type: x proximity;
+    scroll-padding: 0 $nav-scroller-btn-width;
+  }
+
+      .nav-scroller-item {
+        scroll-snap-align: start;
+      }
+
+      // Disable snap points when it is advanced using the button click
+      .nav-scroller-content.no-transition .nav-scroller-item {
+        scroll-snap-align: none;
+      }
+}
