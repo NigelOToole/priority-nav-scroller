@@ -1,59 +1,54 @@
 {
   "name": "priority-nav-scroller",
   "description": "A plugin for the priority+ navigation pattern. When the navigation items don’t fit on screen they are hidden in a horizontal scrollable container with controls.",
-  "version": "1.1.0",
-  "main": "index.js",
-  "dependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "version": "2.0.0",
+  "main": "src/scripts/priority-nav-scroller-umd.js",
+  "esnext": "src/scripts/priority-nav-scroller.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NigelOToole/priority-nav-scroller.git"
   },
-  "keywords": [
-    "priority+",
-    "priority",
-    "responsive",
-    "navigation",
-    "scroller",
-    "scrolling"
-  ],
-  "author": "Nigel O Toole <pure@purestructure.com> (http://www.purestructure.com)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/NigelOToole/priority-nav-scroller/issues"
   },
   "homepage": "https://github.com/NigelOToole/priority-nav-scroller#readme",
+  "author": "Nigel O Toole <pure@purestructure.com> (http://www.purestructure.com)",
+  "license": "MIT",
+  "keywords": [
+    "priority+",
+    "priority",
+    "navigation",
+    "scroller",
+    "scrolling",
+    "responsive",
+    "javascript",
+    "es6",
+    "module",
+    "sass",
+    "css"
+  ],
   "engines": {
     "node": ">=4"
   },
   "devDependencies": {
-    "babel-core": "^6.4.0",
-    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-register": "^6.5.2",
-    "babelify": "^7.3.0",
-    "browser-sync": "^2.2.1",
-    "browserify": "^14.4.0",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.0.1",
-    "gulp-babel": "^6.1.1",
-    "gulp-cssnano": "^2.1.3",
-    "gulp-if": "^2.0.2",
-    "gulp-load-plugins": "^1.2.4",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-modules-umd": "^7.2.0",
+    "@babel/preset-env": "^7.1.0",
+    "autoprefixer": "^9.4.4",
+    "browser-sync": "^2.26.7",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-cli": "^2.0.1",
+    "gulp-load-plugins": "^1.6.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.0.0",
-    "gulp-sourcemaps": "^2.2.0",
-    "gulp-uglify": "^2.0.0",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.2.0"
   },
-  "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module"
-    }
+  "scripts": {
+    "start": "gulp serve",
+    "build": "gulp"
   }
 }
