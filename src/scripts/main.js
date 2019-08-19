@@ -11,7 +11,7 @@ import PriorityNavScroller from './priority-nav-scroller.js';
 //   itemSelector: '.nav-scroller-item',
 //   buttonLeftSelector: '.nav-scroller-btn--left',
 //   buttonRightSelector: '.nav-scroller-btn--right',
-//   scrollStep: 75
+//   scrollStep: 80
 // });
 
 // Init multiple nav scrollers with the same options
