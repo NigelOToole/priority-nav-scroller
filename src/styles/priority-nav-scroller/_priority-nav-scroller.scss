@@ -1,0 +1,174 @@
+
+// ----- Component -----
+.nav-scroller, .nav-scroller-wrapper {
+  display: flex;
+  background-color: #f9f9f9;
+}
+
+.nav-scroller {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+  .nav-scroller-nav {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1;
+    align-self: center;
+
+    // Hide scrollbar
+    padding-bottom: $nav-scroller-scrollbar;
+    margin-bottom: -$nav-scroller-scrollbar;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+
+    .nav-scroller-content {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      min-height: $nav-scroller-btn-height; // Ensures full button is visible
+      transition: transform .25s cubic-bezier(0.645, 0.045, 0.355, 1.000); // easeInOutCubic
+
+      &.no-transition {
+        transition: none;
+      }
+    }
+
+    ul.nav-scroller-content {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+      .nav-scroller-item {
+        flex: 1 0 auto;
+        display: block;
+        font-size: 1.125rem;
+        text-align: center;
+        padding: .2rem 1rem;
+
+        &:not(:last-child) {
+          border-right: 1px solid #ddd;
+        }
+      }
+
+  .nav-scroller-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: $nav-scroller-btn-width;
+    height: $nav-scroller-btn-height;
+    padding: .5rem;
+    font-size: 1.25rem;
+    color: #000;
+    background: #fff;
+    border: 1px solid #ddd;
+    transition: color .3s, opacity .3s;
+    cursor: pointer;
+
+    &:hover {
+      color: #666;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:not(.active) {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+    .nav-scroller-icon {
+      display: inline-block;
+      position: relative;
+      top: -0.1em;
+      width: 1em;
+      height: 1em;
+      fill: currentColor;
+      vertical-align: middle;
+    }
+
+
+  .nav-scroller-btn--left {
+    left: 0;
+  }
+
+  .nav-scroller-btn--right {
+    right: 0;
+  }
+
+
+
+// ----- Optional styles -----
+// Wrapper to put other elements inline with the scroller
+.nav-scroller-wrapper {
+
+}
+
+  .nav-scroller-logo {
+    display: inline-block;
+    padding: .5rem;
+    margin-right: 1rem;
+    font-size: 1.75rem;
+    font-weight: bold;
+  }
+
+
+
+// ----- Variations -----
+// Buttons are always visible and inline rather than hidden and overlaid on the nav
+.nav-scroller--controls-inline {
+
+  .nav-scroller-content {
+    padding: 0 $nav-scroller-btn-width;
+  }
+
+  .nav-scroller-btn {
+    &:not(.active) {
+      color: #ddd;
+      opacity: 1;
+    }
+  }
+
+}
+
+// Nav expands to fill available space
+.nav-scroller--expand {
+
+  .nav-scroller-nav, .nav-scroller-content {
+    width: 100%;
+  }
+}
+
+// Nav aligns to the right
+.nav-scroller--right {
+
+  .nav-scroller-nav {
+    margin-left: auto;
+  }
+}
+
+// CSS scroll snap points is used to align the links on manual scroll not on button click. https://css-tricks.com/practical-css-scroll-snapping/
+.nav-scroller--snap {
+
+  .nav-scroller-nav {
+    scroll-snap-type: x proximity;
+    scroll-padding: 0 $nav-scroller-btn-width;
+  }
+
+      .nav-scroller-item {
+        scroll-snap-align: start;
+      }
+
+      // Disable snap points when it is advanced using the button click
+      .nav-scroller-content.no-transition .nav-scroller-item {
+        scroll-snap-align: none;
+      }
+}

@@ -37,12 +37,12 @@ exports.styles = styles;
 
 
 function scripts() {
-  return src(`${paths.src}/scripts/direction-reveal.js`)
+  return src(`${paths.src}/scripts/priority-nav-scroller.js`)
     .pipe($.plumber())
     .pipe($.babel({
       plugins: ['@babel/plugin-transform-modules-umd']
     }))
-    .pipe($.rename('direction-reveal-umd.js'))
+    .pipe($.rename('priority-nav-scroller-umd.js'))
     .pipe(dest(`${paths.src}/scripts/`))
 };
 

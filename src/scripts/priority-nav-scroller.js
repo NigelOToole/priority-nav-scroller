@@ -7,7 +7,7 @@
  * @param {string} itemSelector - Items selector.
  * @param {string} buttonLeftSelector - Left button selector.
  * @param {string} buttonRightSelector - Right button selector.
- * @param {integer || string} scrollStep - Amount to scroll on button click.
+ * @param {integer || string} scrollStep - Amount to scroll on button click. 'average' gets the average link width.
  */
 
 const PriorityNavScroller = function({
