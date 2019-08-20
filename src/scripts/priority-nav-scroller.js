@@ -21,11 +21,9 @@ const PriorityNavScroller = function({
     scrollStep: scrollStep = 'average'
   } = {}) {
 
-  const navScroller = typeof selector === 'string' ? document.querySelectorAll(selector) : selector;
+  const navScroller = typeof selector === 'string' ? document.querySelector(selector) : selector;
 
-  console.log(navScroller);
-
-  const validateScrollStep = function() {
+  const validateScrollStep = () => {
     return Number.isInteger(scrollStep) || scrollStep === 'average';
   }
 
@@ -99,7 +97,7 @@ const PriorityNavScroller = function({
   // Calculates the scroll step based on the width of the scroller and the number of links
   const calculateScrollStep = function() {
     if (scrollStep === 'average') {
-      let scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent,null).getPropertyValue('padding-left'), 10) + parseInt(getComputedStyle(navScrollerContent,null).getPropertyValue('padding-right'), 10));
+      let scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent).getPropertyValue('padding-left')) + parseInt(getComputedStyle(navScrollerContent).getPropertyValue('padding-right')));
 
       let scrollStepAverage = Math.floor(scrollViewportNoPadding / navScrollerContentItems.length);
 
@@ -171,6 +169,7 @@ const PriorityNavScroller = function({
 
 
   const init = function() {
+
     setOverflow();
 
     window.addEventListener('resize', () => {
@@ -192,6 +191,7 @@ const PriorityNavScroller = function({
     navScrollerRight.addEventListener('click', () => {
       moveScroller('right');
     });
+
   };
 
 

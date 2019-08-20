@@ -17,7 +17,7 @@ import PriorityNavScroller from './priority-nav-scroller.js';
 // Init multiple nav scrollers with the same options
 let navScrollers = document.querySelectorAll('.nav-scroller');
 
-navScrollers.forEach((currentValue, currentIndex) => {
+navScrollers.forEach((currentValue) => {
   PriorityNavScroller({
     selector: currentValue
   });
