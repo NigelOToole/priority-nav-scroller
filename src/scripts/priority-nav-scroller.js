@@ -18,7 +18,8 @@ const PriorityNavScroller = function({
     itemSelector: itemSelector = '.nav-scroller-item',
     buttonLeftSelector: buttonLeftSelector = '.nav-scroller-btn--left',
     buttonRightSelector: buttonRightSelector = '.nav-scroller-btn--right',
-    scrollStep: scrollStep = 'average'
+    scrollStep: scrollStep = 80,
+    scrollStepRounding: scrollStepRounding = 80
   } = {}) {
 
   const navScroller = typeof selector === 'string' ? document.querySelector(selector) : selector;
@@ -27,8 +28,8 @@ const PriorityNavScroller = function({
     return Number.isInteger(scrollStep) || scrollStep === 'average';
   }
 
-  if (navScroller === undefined || navScroller === null || !validateScrollStep()) {
-    throw new Error('There is something wrong with your selector(s).');
+  if (navScroller === undefined || navScroller === null || !validateScrollStep() || scrollStepRounding < 0 || scrollStepRounding > 100) {
+    throw new Error('There is something wrong, check your options.');
   }
 
   const navScrollerNav = navScroller.querySelector(navSelector);
@@ -43,6 +44,7 @@ const PriorityNavScroller = function({
   let scrollingDirection = '';
   let scrollOverflow = '';
   let timeout;
+  scrollStepRounding *= .01; // Convert to decimal
 
 
   // Sets overflow and toggle buttons accordingly
@@ -113,15 +115,36 @@ const PriorityNavScroller = function({
 
     let scrollDistance = scrollStep;
     let scrollAvailable = direction === 'left' ? scrollAvailableLeft : scrollAvailableRight;
+    let scrollAvailableOpposite = direction === 'left' ? scrollAvailableRight : scrollAvailableLeft;
 
-    // If there is less that 1.8 steps available then scroll the full way
-    if (scrollAvailable < (scrollStep * 1.8)) {
+    // If there will be less than 25% of the last step visible then scroll to the end
+    if (scrollAvailable < (scrollStep * 1.75)) {
       scrollDistance = scrollAvailable;
+    }
+    else {
+      if (scrollStepRounding !== 0) {
+        let scrollPartial = (scrollAvailableOpposite % scrollStep) / scrollStep;
+        console.log(scrollPartial);
+        // console.log(scrollAvailableOpposite % scrollStep);
+
+        // If the next step change will cover up an item more than scrollRounding as a percentage then go to the next step
+        if (scrollPartial >= scrollStepRounding) {
+          scrollDistance = scrollStep + (scrollStep - (scrollAvailableOpposite % scrollStep));
+          console.log(scrollDistance);
+        }
+
+        // If scroll is less than the inverse of scrollRounding as a percentage inside the current step then go to the end of that step
+        if (scrollPartial < (1 - scrollStepRounding)) {
+          scrollDistance = scrollStep - (scrollAvailableOpposite % scrollStep);
+          console.log(scrollDistance);
+        }
+      }
     }
 
     if (direction === 'right') {
       scrollDistance *= -1;
     }
+
 
     navScrollerContent.classList.remove('no-transition');
     navScrollerContent.style.transform = 'translateX(' + scrollDistance + 'px)';
@@ -131,7 +154,7 @@ const PriorityNavScroller = function({
   }
 
 
-  // Set the scroller position and removes transform, called after moveScroller()
+  // Set the scroller position and removes transform, called after moveScroller() in the transitionend event
   const setScrollerPosition = function() {
     var style = window.getComputedStyle(navScrollerContent, null);
     var transform = style.getPropertyValue('transform');

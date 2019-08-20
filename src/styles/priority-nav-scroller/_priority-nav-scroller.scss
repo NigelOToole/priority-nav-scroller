@@ -33,6 +33,7 @@
 
     .nav-scroller-content {
       min-height: $nav-scroller-btn-height; // Ensures full button is visible
+      will-change: transform;
 
       &:not(.no-transition) {
         transition: transform .25s cubic-bezier(0.645, 0.045, 0.355, 1.000); // easeInOutCubic
@@ -55,9 +56,11 @@
         display: block;
         font-size: 1.125rem;
         text-align: center;
+        border-left: 1px solid transparent; // border on both sides so all items are spaced evenly
+        border-right: 1px solid #ddd;
 
-        &:not(:last-child) {
-          border-right: 1px solid #ddd;
+        &:last-child {
+          border-right-color: transparent;
         }
       }
 
@@ -77,6 +80,7 @@
     border: 1px solid #ddd;
     transition: color .3s, opacity .3s;
     cursor: pointer;
+    opacity: .5;;
 
     &:hover {
       color: #666;
@@ -181,9 +185,11 @@
   flex-direction: column;
   align-items: flex-start;
 
-  &:not(:last-child) {
-    border-right: 1px solid #ddd;
+  &:not(:first-child) {
+    border-left: 1px solid #ddd;
+    margin-left: -1px;  // To offset border
   }
+
 }
 
   .nav-scroller-group-title {
@@ -191,5 +197,8 @@
   }
 
   .nav-scroller-items {
-    
+    .nav-scroller-item {
+      text-align: center;
+      min-width: 80px;
+    }
   }
