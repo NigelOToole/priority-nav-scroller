@@ -33,10 +33,9 @@
 
     .nav-scroller-content {
       min-height: $nav-scroller-btn-height; // Ensures full button is visible
-      transition: transform .25s cubic-bezier(0.645, 0.045, 0.355, 1.000); // easeInOutCubic
 
-      &.no-transition {
-        transition: none;
+      &:not(.no-transition) {
+        transition: transform .25s cubic-bezier(0.645, 0.045, 0.355, 1.000); // easeInOutCubic
       }
     }
 
@@ -44,10 +43,6 @@
       margin: 0;
       padding: 0;
       list-style: none;
-    }
-
-    .nav-scroller-items {
-
     }
 
       .nav-scroller-item, .nav-scroller-group-title {
@@ -74,7 +69,7 @@
     z-index: 10;
     width: $nav-scroller-btn-width;
     min-height: $nav-scroller-btn-height;
-    min-height: 100%;
+    height: 100%;
     padding: .5rem;
     font-size: 1.25rem;
     color: #000;
@@ -175,13 +170,9 @@
     scroll-padding: 0 $nav-scroller-btn-width;
   }
 
-      .nav-scroller-item {
-        scroll-snap-align: start;
-      }
-
       // Disable snap points when it is advanced using the button click
-      .nav-scroller-content.no-transition .nav-scroller-item {
-        scroll-snap-align: none;
+      .nav-scroller-content:not(.no-transition) .nav-scroller-item {
+        scroll-snap-align: start;
       }
 }
 
@@ -196,8 +187,8 @@
 }
 
   .nav-scroller-group-title {
+    font-weight: bold;
   }
-
 
   .nav-scroller-items {
     

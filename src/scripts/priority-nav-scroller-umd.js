@@ -19,16 +19,17 @@
   _exports["default"] = void 0;
 
   /**
-   * Priority+ horizontal scrolling menu.
-   * @param {Object} object - Container for all options.
-   * @param {string || DOM node} selector - Element selector.
-   * @param {string} navSelector - Nav element selector.
-   * @param {string} contentSelector - Content element selector.
-   * @param {string} itemSelector - Items selector.
-   * @param {string} buttonLeftSelector - Left button selector.
-   * @param {string} buttonRightSelector - Right button selector.
-   * @param {integer || string} scrollStep - Amount to scroll on button click. 'average' gets the average link width.
-   */
+    Priority+ horizontal scrolling menu.
+  
+    @param {Object} object - Container for all options.
+      @param {string || DOM node} selector - Element selector.
+      @param {string} navSelector - Nav element selector.
+      @param {string} contentSelector - Content element selector.
+      @param {string} itemSelector - Items selector.
+      @param {string} buttonLeftSelector - Left button selector.
+      @param {string} buttonRightSelector - Right button selector.
+      @param {integer || string} scrollStep - Amount to scroll on button click. 'average' gets the average link width.
+  */
   var PriorityNavScroller = function PriorityNavScroller() {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         _ref$selector = _ref.selector,
@@ -44,7 +45,7 @@
         _ref$buttonRightSelec = _ref.buttonRightSelector,
         buttonRightSelector = _ref$buttonRightSelec === void 0 ? '.nav-scroller-btn--right' : _ref$buttonRightSelec,
         _ref$scrollStep = _ref.scrollStep,
-        scrollStep = _ref$scrollStep === void 0 ? 75 : _ref$scrollStep;
+        scrollStep = _ref$scrollStep === void 0 ? 'average' : _ref$scrollStep;
 
     var navScroller = typeof selector === 'string' ? document.querySelector(selector) : selector;
 
@@ -53,8 +54,7 @@
     };
 
     if (navScroller === undefined || navScroller === null || !validateScrollStep()) {
-      throw new Error('There is something wrong with your selector.');
-      return;
+      throw new Error('There is something wrong with your selector(s).');
     }
 
     var navScrollerNav = navScroller.querySelector(navSelector);
@@ -67,15 +67,13 @@
     var scrollAvailableRight = 0;
     var scrollingDirection = '';
     var scrollOverflow = '';
-    var timeout;
-    /** Sets overflow and toggle buttons accordingly */
+    var timeout; // Sets overflow and toggle buttons accordingly
 
     var setOverflow = function setOverflow() {
       scrollOverflow = getOverflow();
       toggleButtons(scrollOverflow);
       calculateScrollStep();
-    };
-    /** Debounce setting the overflow with requestAnimationFrame */
+    }; // Debounce setting the overflow with requestAnimationFrame
 
 
     var requestSetOverflow = function requestSetOverflow() {
@@ -83,11 +81,7 @@
       timeout = window.requestAnimationFrame(function () {
         setOverflow();
       });
-    };
-    /**
-     * Gets the overflow on the nav scroller
-     * @return {string} Left, right, both or none
-     */
+    }; // Gets the overflow available on the nav scroller
 
 
     var getOverflow = function getOverflow() {
@@ -95,7 +89,7 @@
       var scrollViewport = navScrollerNav.clientWidth;
       var scrollLeft = navScrollerNav.scrollLeft;
       scrollAvailableLeft = scrollLeft;
-      scrollAvailableRight = scrollWidth - (scrollViewport + scrollLeft); // 1 instead of 0 to compensate for rounding errors from the browser
+      scrollAvailableRight = scrollWidth - (scrollViewport + scrollLeft); // 1 instead of 0 to compensate for number rounding
 
       var scrollLeftCondition = scrollAvailableLeft > 1;
       var scrollRightCondition = scrollAvailableRight > 1; // console.log(scrollWidth, scrollViewport, scrollAvailableLeft, scrollAvailableRight);
@@ -109,26 +103,24 @@
       } else {
         return 'none';
       }
-    };
-    /** Calculates the scroll step based on the width of the scroller and the number of links */
+    }; // Calculates the scroll step based on the width of the scroller and the number of links
 
 
     var calculateScrollStep = function calculateScrollStep() {
       if (scrollStep === 'average') {
-        var scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent, null).getPropertyValue('padding-left'), 10) + parseInt(getComputedStyle(navScrollerContent, null).getPropertyValue('padding-right'), 10));
+        var scrollViewportNoPadding = navScrollerNav.scrollWidth - (parseInt(getComputedStyle(navScrollerContent).getPropertyValue('padding-left')) + parseInt(getComputedStyle(navScrollerContent).getPropertyValue('padding-right')));
         var scrollStepAverage = Math.floor(scrollViewportNoPadding / navScrollerContentItems.length);
         scrollStep = scrollStepAverage;
       }
-    };
-    /** Move the scroller with a transform */
+    }; // Move the scroller with a transform
 
 
     var moveScroller = function moveScroller(direction) {
       if (scrolling === true || scrollOverflow !== direction && scrollOverflow !== 'both') return;
       var scrollDistance = scrollStep;
-      var scrollAvailable = direction === 'left' ? scrollAvailableLeft : scrollAvailableRight; // If there is less that 1.75 steps available then scroll the full way
+      var scrollAvailable = direction === 'left' ? scrollAvailableLeft : scrollAvailableRight; // If there is less that 1.8 steps available then scroll the full way
 
-      if (scrollAvailable < scrollStep * 1.75) {
+      if (scrollAvailable < scrollStep * 1.8) {
         scrollDistance = scrollAvailable;
       }
 
@@ -140,8 +132,7 @@
       navScrollerContent.style.transform = 'translateX(' + scrollDistance + 'px)';
       scrollingDirection = direction;
       scrolling = true;
-    };
-    /** Set the scroller position and removes transform, called after moveScroller() */
+    }; // Set the scroller position and removes transform, called after moveScroller()
 
 
     var setScrollerPosition = function setScrollerPosition() {
@@ -158,8 +149,7 @@
       navScrollerNav.scrollLeft = navScrollerNav.scrollLeft + transformValue;
       navScrollerContent.classList.remove('no-transition');
       scrolling = false;
-    };
-    /** Toggle buttons depending on overflow */
+    }; // Toggle buttons depending on overflow
 
 
     var toggleButtons = function toggleButtons(overflow) {
@@ -175,8 +165,6 @@
         navScrollerRight.classList.remove('active');
       }
     };
-    /** Init plugin */
-
 
     var init = function init() {
       setOverflow();
@@ -195,7 +183,7 @@
       navScrollerRight.addEventListener('click', function () {
         moveScroller('right');
       });
-    }; // Init is called by default
+    }; // Self init
 
 
     init(); // Reveal API
