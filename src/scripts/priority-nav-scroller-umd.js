@@ -45,7 +45,9 @@
         _ref$buttonRightSelec = _ref.buttonRightSelector,
         buttonRightSelector = _ref$buttonRightSelec === void 0 ? '.nav-scroller-btn--right' : _ref$buttonRightSelec,
         _ref$scrollStep = _ref.scrollStep,
-        scrollStep = _ref$scrollStep === void 0 ? 'average' : _ref$scrollStep;
+        scrollStep = _ref$scrollStep === void 0 ? 80 : _ref$scrollStep,
+        _ref$scrollStepRoundi = _ref.scrollStepRounding,
+        scrollStepRounding = _ref$scrollStepRoundi === void 0 ? 80 : _ref$scrollStepRoundi;
 
     var navScroller = typeof selector === 'string' ? document.querySelector(selector) : selector;
 
@@ -53,8 +55,8 @@
       return Number.isInteger(scrollStep) || scrollStep === 'average';
     };
 
-    if (navScroller === undefined || navScroller === null || !validateScrollStep()) {
-      throw new Error('There is something wrong with your selector(s).');
+    if (navScroller === undefined || navScroller === null || !validateScrollStep() || scrollStepRounding < 0 || scrollStepRounding > 100) {
+      throw new Error('There is something wrong, check your options.');
     }
 
     var navScrollerNav = navScroller.querySelector(navSelector);
@@ -67,7 +69,9 @@
     var scrollAvailableRight = 0;
     var scrollingDirection = '';
     var scrollOverflow = '';
-    var timeout; // Sets overflow and toggle buttons accordingly
+    var timeout;
+    scrollStepRounding *= .01; // Convert to decimal
+    // Sets overflow and toggle buttons accordingly
 
     var setOverflow = function setOverflow() {
       scrollOverflow = getOverflow();
@@ -118,10 +122,26 @@
     var moveScroller = function moveScroller(direction) {
       if (scrolling === true || scrollOverflow !== direction && scrollOverflow !== 'both') return;
       var scrollDistance = scrollStep;
-      var scrollAvailable = direction === 'left' ? scrollAvailableLeft : scrollAvailableRight; // If there is less that 1.8 steps available then scroll the full way
+      var scrollAvailable = direction === 'left' ? scrollAvailableLeft : scrollAvailableRight;
+      var scrollAvailableOpposite = direction === 'left' ? scrollAvailableRight : scrollAvailableLeft; // If there will be less than 25% of the last step visible then scroll to the end
 
-      if (scrollAvailable < scrollStep * 1.8) {
+      if (scrollAvailable < scrollStep * 1.75) {
         scrollDistance = scrollAvailable;
+      } else {// if (scrollStepRounding !== 0) {
+        //   let scrollPartial = (scrollAvailableOpposite % scrollStep) / scrollStep;
+        //   console.log(scrollPartial);
+        //   // console.log(scrollAvailableOpposite % scrollStep);
+        //   // If the next step change will cover up an item more than scrollRounding as a percentage then go to the next step
+        //   if (scrollPartial >= scrollStepRounding) {
+        //     scrollDistance = scrollStep + (scrollStep - (scrollAvailableOpposite % scrollStep));
+        //     console.log(scrollDistance);
+        //   }
+        //   // If scroll is less than the inverse of scrollRounding as a percentage inside the current step then go to the end of that step
+        //   if (scrollPartial < (1 - scrollStepRounding)) {
+        //     scrollDistance = scrollStep - (scrollAvailableOpposite % scrollStep);
+        //     console.log(scrollDistance);
+        //   }
+        // }
       }
 
       if (direction === 'right') {
@@ -132,7 +152,7 @@
       navScrollerContent.style.transform = 'translateX(' + scrollDistance + 'px)';
       scrollingDirection = direction;
       scrolling = true;
-    }; // Set the scroller position and removes transform, called after moveScroller()
+    }; // Set the scroller position and removes transform, called after moveScroller() in the transitionend event
 
 
     var setScrollerPosition = function setScrollerPosition() {

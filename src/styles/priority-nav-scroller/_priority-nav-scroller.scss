@@ -80,7 +80,6 @@
     border: 1px solid #ddd;
     transition: color .3s, opacity .3s;
     cursor: pointer;
-    opacity: .5;;
 
     &:hover {
       color: #666;
@@ -175,9 +174,17 @@
   }
 
       // Disable snap points when it is advanced using the button click
-      .nav-scroller-content:not(.no-transition) .nav-scroller-item {
-        scroll-snap-align: start;
+      .nav-scroller-content:not(.no-transition) {
+        .nav-scroller-item {
+          scroll-snap-align: start;
+        }
+
+        // Align snap to end when there is less than 1 step left
+        &.snap-align-end .nav-scroller-item  {
+          scroll-snap-align: end;
+        }
       }
+
 }
 
 // Grouped navigation items

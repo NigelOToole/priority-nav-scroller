@@ -18,8 +18,7 @@ const PriorityNavScroller = function({
     itemSelector: itemSelector = '.nav-scroller-item',
     buttonLeftSelector: buttonLeftSelector = '.nav-scroller-btn--left',
     buttonRightSelector: buttonRightSelector = '.nav-scroller-btn--right',
-    scrollStep: scrollStep = 80,
-    scrollStepRounding: scrollStepRounding = 80
+    scrollStep: scrollStep = 80
   } = {}) {
 
   const navScroller = typeof selector === 'string' ? document.querySelector(selector) : selector;
@@ -28,7 +27,7 @@ const PriorityNavScroller = function({
     return Number.isInteger(scrollStep) || scrollStep === 'average';
   }
 
-  if (navScroller === undefined || navScroller === null || !validateScrollStep() || scrollStepRounding < 0 || scrollStepRounding > 100) {
+  if (navScroller === undefined || navScroller === null || !validateScrollStep()) {
     throw new Error('There is something wrong, check your options.');
   }
 
@@ -44,7 +43,6 @@ const PriorityNavScroller = function({
   let scrollingDirection = '';
   let scrollOverflow = '';
   let timeout;
-  scrollStepRounding *= .01; // Convert to decimal
 
 
   // Sets overflow and toggle buttons accordingly
@@ -115,36 +113,19 @@ const PriorityNavScroller = function({
 
     let scrollDistance = scrollStep;
     let scrollAvailable = direction === 'left' ? scrollAvailableLeft : scrollAvailableRight;
-    let scrollAvailableOpposite = direction === 'left' ? scrollAvailableRight : scrollAvailableLeft;
 
     // If there will be less than 25% of the last step visible then scroll to the end
     if (scrollAvailable < (scrollStep * 1.75)) {
       scrollDistance = scrollAvailable;
     }
-    else {
-      if (scrollStepRounding !== 0) {
-        let scrollPartial = (scrollAvailableOpposite % scrollStep) / scrollStep;
-        console.log(scrollPartial);
-        // console.log(scrollAvailableOpposite % scrollStep);
-
-        // If the next step change will cover up an item more than scrollRounding as a percentage then go to the next step
-        if (scrollPartial >= scrollStepRounding) {
-          scrollDistance = scrollStep + (scrollStep - (scrollAvailableOpposite % scrollStep));
-          console.log(scrollDistance);
-        }
-
-        // If scroll is less than the inverse of scrollRounding as a percentage inside the current step then go to the end of that step
-        if (scrollPartial < (1 - scrollStepRounding)) {
-          scrollDistance = scrollStep - (scrollAvailableOpposite % scrollStep);
-          console.log(scrollDistance);
-        }
-      }
-    }
 
     if (direction === 'right') {
       scrollDistance *= -1;
-    }
 
+      if (scrollAvailable < scrollStep) {
+        navScrollerContent.classList.add('snap-align-end');
+      }
+    }
 
     navScrollerContent.classList.remove('no-transition');
     navScrollerContent.style.transform = 'translateX(' + scrollDistance + 'px)';
@@ -167,7 +148,7 @@ const PriorityNavScroller = function({
     navScrollerContent.classList.add('no-transition');
     navScrollerContent.style.transform = '';
     navScrollerNav.scrollLeft = navScrollerNav.scrollLeft + transformValue;
-    navScrollerContent.classList.remove('no-transition');
+    navScrollerContent.classList.remove('no-transition', 'snap-align-end');
 
     scrolling = false;
   }
