@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Priority Nav Scroller - Scrollable priority+ navigation plugin</title>
+
+    <link rel="stylesheet" href="styles/site.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cutive+Mono|Open+Sans:300,400&display=swap">
+
+    <link rel="stylesheet" href="styles/priority-nav-scroller.css">
+  </head>
+
+  <body>
+
+    <header class="header">
+      <div class="container">
+
+        <h1 class="logo-text">Priority Nav Scroller</h1>
+
+        <div class="header-links">
+          <a href="https://github.com/NigelOToole/priority-nav-scroller/archive/master.zip" class="btn-demo btn-demo--white">Download</a>
+          <a href="https://github.com/NigelOToole/priority-nav-scroller" target="_blank" rel="noopener" class="btn-demo btn-demo--white">View on GitHub</a>
+        </div>
+      </div>
+    </header>
+
+
+    <div class="fullwidth">
+      <div class="container separator">
+        <h2 class="m-0">Priority Nav Scroller is a plugin for the priority+ navigation pattern. When navigation items don’t fit on screen they are hidden and can be scrolled into view or using controls.</h2>
+      </div>
+    </div>
+
+
+    <div class="fullwidth">
+      <div class="container separator">
+
+        <h3>Default</h3>
+
+        <div class="nav-scroller">
+
+          <nav class="nav-scroller-nav">
+            <div class="nav-scroller-content">
+              <a href="#" class="nav-scroller-item">Books</a>
+              <a href="#" class="nav-scroller-item">Movies</a>
+              <a href="#" class="nav-scroller-item">TV</a>
+              <a href="#" class="nav-scroller-item">Music</a>
+              <a href="#" class="nav-scroller-item">Games</a>
+              <a href="#" class="nav-scroller-item">Electronics</a>
+              <a href="#" class="nav-scroller-item">Home</a>
+              <a href="#" class="nav-scroller-item">Garden</a>
+              <a href="#" class="nav-scroller-item">Pets</a>
+              <a href="#" class="nav-scroller-item">Toys</a>
+              <a href="#" class="nav-scroller-item">Kids</a>
+              <a href="#" class="nav-scroller-item">Clothes</a>
+              <a href="#" class="nav-scroller-item">Shoes</a>
+              <a href="#" class="nav-scroller-item">Sports</a>
+              <a href="#" class="nav-scroller-item">Food</a>
+              <a href="#" class="nav-scroller-item">Health</a>
+              <a href="#" class="nav-scroller-item">Cars</a>
+            </div>
+          </nav>
+
+          <button class="nav-scroller-btn nav-scroller-btn--left" aria-label="Scroll left">
+            <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 16l4.736-4.768L16 0l4.736 4.736L9.504 16l11.232 11.264L16 32 4.736 20.736z"/></svg>
+          </button>
+
+          <button class="nav-scroller-btn nav-scroller-btn--right" aria-label="Scroll right">
+            <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 27.264L11.264 16 0 4.736 4.736 0 16 11.232 20.736 16l-16 16z"/></svg>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="fullwidth">
+      <div class="container separator">
+
+        <h3>Inline controls</h3>
+
+        <div class="nav-scroller nav-scroller--controls-inline">
+
+          <nav class="nav-scroller-nav">
+            <div class="nav-scroller-content">
+              <a href="#" class="nav-scroller-item">Books</a>
+              <a href="#" class="nav-scroller-item">Movies</a>
+              <a href="#" class="nav-scroller-item">TV</a>
+              <a href="#" class="nav-scroller-item">Music</a>
+              <a href="#" class="nav-scroller-item">Games</a>
+              <a href="#" class="nav-scroller-item">Electronics</a>
+              <a href="#" class="nav-scroller-item">Home</a>
+              <a href="#" class="nav-scroller-item">Garden</a>
+              <a href="#" class="nav-scroller-item">Pets</a>
+              <a href="#" class="nav-scroller-item">Toys</a>
+              <a href="#" class="nav-scroller-item">Kids</a>
+              <a href="#" class="nav-scroller-item">Clothes</a>
+              <a href="#" class="nav-scroller-item">Shoes</a>
+              <a href="#" class="nav-scroller-item">Sports</a>
+              <a href="#" class="nav-scroller-item">Food</a>
+              <a href="#" class="nav-scroller-item">Health</a>
+              <a href="#" class="nav-scroller-item">Cars</a>
+            </div>
+          </nav>
+
+          <button class="nav-scroller-btn nav-scroller-btn--left" aria-label="Scroll left">
+            <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 16l4.736-4.768L16 0l4.736 4.736L9.504 16l11.232 11.264L16 32 4.736 20.736z"/></svg>
+          </button>
+
+          <button class="nav-scroller-btn nav-scroller-btn--right" aria-label="Scroll right">
+            <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 27.264L11.264 16 0 4.736 4.736 0 16 11.232 20.736 16l-16 16z"/></svg>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="fullwidth">
+      <div class="container separator">
+
+        <h3>Scroll snap (Uses <a href="https://caniuse.com/#feat=css-snappoints" target="_blank" rel="noopener">CSS Scroll snap points</a>)</h3>
+
+        <div class="nav-scroller nav-scroller--snap">
+
+          <nav class="nav-scroller-nav">
+            <div class="nav-scroller-content">
+              <a href="#" class="nav-scroller-item">Books</a>
+              <a href="#" class="nav-scroller-item">Movies</a>
+              <a href="#" class="nav-scroller-item">TV</a>
+              <a href="#" class="nav-scroller-item">Music</a>
+              <a href="#" class="nav-scroller-item">Games</a>
+              <a href="#" class="nav-scroller-item">Electronics</a>
+              <a href="#" class="nav-scroller-item">Home</a>
+              <a href="#" class="nav-scroller-item">Garden</a>
+              <a href="#" class="nav-scroller-item">Pets</a>
+              <a href="#" class="nav-scroller-item">Toys</a>
+              <a href="#" class="nav-scroller-item">Kids</a>
+              <a href="#" class="nav-scroller-item">Clothes</a>
+              <a href="#" class="nav-scroller-item">Shoes</a>
+              <a href="#" class="nav-scroller-item">Sports</a>
+              <a href="#" class="nav-scroller-item">Food</a>
+              <a href="#" class="nav-scroller-item">Health</a>
+              <a href="#" class="nav-scroller-item">Cars</a>
+            </div>
+          </nav>
+
+          <button class="nav-scroller-btn nav-scroller-btn--left" aria-label="Scroll left">
+            <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 16l4.736-4.768L16 0l4.736 4.736L9.504 16l11.232 11.264L16 32 4.736 20.736z"/></svg>
+          </button>
+
+          <button class="nav-scroller-btn nav-scroller-btn--right" aria-label="Scroll right">
+            <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 27.264L11.264 16 0 4.736 4.736 0 16 11.232 20.736 16l-16 16z"/></svg>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="fullwidth">
+      <div class="container separator">
+
+        <h3>Inline element</h3>
+
+        <div class="nav-scroller-wrapper">
+          <div class="nav-scroller-logo">Logo</div>
+
+          <div class="nav-scroller">
+
+            <nav class="nav-scroller-nav">
+              <div class="nav-scroller-content">
+                <a href="#" class="nav-scroller-item">Books</a>
+                <a href="#" class="nav-scroller-item">Movies</a>
+                <a href="#" class="nav-scroller-item">TV</a>
+                <a href="#" class="nav-scroller-item">Music</a>
+                <a href="#" class="nav-scroller-item">Games</a>
+                <a href="#" class="nav-scroller-item">Electronics</a>
+              </div>
+            </nav>
+
+            <button class="nav-scroller-btn nav-scroller-btn--left" aria-label="Scroll left">
+              <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 16l4.736-4.768L16 0l4.736 4.736L9.504 16l11.232 11.264L16 32 4.736 20.736z"/></svg>
+            </button>
+
+            <button class="nav-scroller-btn nav-scroller-btn--right" aria-label="Scroll right">
+              <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 27.264L11.264 16 0 4.736 4.736 0 16 11.232 20.736 16l-16 16z"/></svg>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="fullwidth">
+      <div class="container separator">
+
+        <h3>Align right</h3>
+
+        <div class="nav-scroller-wrapper">
+
+          <div class="nav-scroller-logo">Logo</div>
+
+          <div class="nav-scroller nav-scroller--right">
+
+            <nav class="nav-scroller-nav">
+              <div class="nav-scroller-content">
+                <a href="#" class="nav-scroller-item">Books</a>
+                <a href="#" class="nav-scroller-item">Movies</a>
+                <a href="#" class="nav-scroller-item">TV</a>
+                <a href="#" class="nav-scroller-item">Music</a>
+                <a href="#" class="nav-scroller-item">Games</a>
+                <a href="#" class="nav-scroller-item">Electronics</a>
+              </div>
+            </nav>
+
+            <button class="nav-scroller-btn nav-scroller-btn--left" aria-label="Scroll left">
+              <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 16l4.736-4.768L16 0l4.736 4.736L9.504 16l11.232 11.264L16 32 4.736 20.736z"/></svg>
+            </button>
+
+            <button class="nav-scroller-btn nav-scroller-btn--right" aria-label="Scroll right">
+              <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 27.264L11.264 16 0 4.736 4.736 0 16 11.232 20.736 16l-16 16z"/></svg>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="fullwidth">
+      <div class="container separator">
+
+        <h3>Navigation items expand to fill the available space</h3>
+
+        <div class="nav-scroller nav-scroller--expand">
+
+          <nav class="nav-scroller-nav">
+            <div class="nav-scroller-content">
+              <a href="#" class="nav-scroller-item">Books</a>
+              <a href="#" class="nav-scroller-item">Movies</a>
+              <a href="#" class="nav-scroller-item">TV</a>
+              <a href="#" class="nav-scroller-item">Music</a>
+              <a href="#" class="nav-scroller-item">Games</a>
+              <a href="#" class="nav-scroller-item">Electronics</a>
+            </div>
+          </nav>
+
+          <button class="nav-scroller-btn nav-scroller-btn--left" aria-label="Scroll left">
+            <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"  xmlns="http://www.w3.org/2000/svg"><path d="M0 16l4.736-4.768 11.264-11.232 4.736 4.736-11.232 11.264 11.232 11.264-4.736 4.736-11.264-11.264z"></path></svg>
+          </button>
+
+          <button class="nav-scroller-btn nav-scroller-btn--right" aria-label="Scroll right">
+            <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 27.264L11.264 16 0 4.736 4.736 0 16 11.232 20.736 16l-16 16z"/></svg>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="fullwidth">
+      <div class="container separator">
+
+        <h3>Grouped navigation items</h3>
+
+        <div class="nav-scroller nav-scroller--controls-inline nav-scroller--snap">
+
+          <nav class="nav-scroller-nav">
+            <div class="nav-scroller-content">
+
+              <div class="nav-scroller-group">
+                <div class="nav-scroller-group-title">JUN</div>
+
+                <div class="nav-scroller-items">
+                  <a href="#" class="nav-scroller-item">FRI<br>14</a>
+                  <a href="#" class="nav-scroller-item">SAT<br>15</a>
+                  <a href="#" class="nav-scroller-item">SUN<br>16</a>
+                  <a href="#" class="nav-scroller-item">FRI<br>21</a>
+                  <a href="#" class="nav-scroller-item">SAT<br>22</a>
+                  <a href="#" class="nav-scroller-item">SUN<br>23</a>
+                  <a href="#" class="nav-scroller-item">FRI<br>28</a>
+                  <a href="#" class="nav-scroller-item">SAT<br>29</a>
+                  <a href="#" class="nav-scroller-item">SUN<br>30</a>
+                </div>
+              </div>
+
+              <div class="nav-scroller-group">
+                <div class="nav-scroller-group-title">JUL</div>
+
+                <div class="nav-scroller-items">
+                  <a href="#" class="nav-scroller-item">FRI<br>05</a>
+                  <a href="#" class="nav-scroller-item">SAT<br>06</a>
+                  <a href="#" class="nav-scroller-item">SUN<br>07</a>
+                  <a href="#" class="nav-scroller-item">FRI<br>12</a>
+                  <a href="#" class="nav-scroller-item">SAT<br>13</a>
+                  <a href="#" class="nav-scroller-item">SUN<br>14</a>
+                  <a href="#" class="nav-scroller-item">FRI<br>19</a>
+                  <a href="#" class="nav-scroller-item">SAT<br>20</a>
+                  <a href="#" class="nav-scroller-item">SUN<br>21</a>
+                </div>
+              </div>
+            
+            </div>
+          </nav>
+
+          <button class="nav-scroller-btn nav-scroller-btn--left" aria-label="Scroll left">
+            <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 16l4.736-4.768L16 0l4.736 4.736L9.504 16l11.232 11.264L16 32 4.736 20.736z"/></svg>
+          </button>
+
+          <button class="nav-scroller-btn nav-scroller-btn--right" aria-label="Scroll right">
+            <svg class="nav-scroller-icon" width="21" height="32" viewBox="0 0 21 32"><path d="M0 27.264L11.264 16 0 4.736 4.736 0 16 11.232 20.736 16l-16 16z"/></svg>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="fullwidth">
+      <div class="container separator">
+
+        <div class="subsection">
+
+          <h2>Installation</h2>
+
+<pre>
+<code>$ npm install priority-nav-scroller --save-dev</code>
+</pre>
+
+        </div>
+
+
+        <div class="subsection">
+          <h2>Usage</h2>
+
+          <p>The script is an ES6(ES2015) module but the compiled version is included in the build as "src/scripts/priority-nav-scroller-umd.js". You can also copy "src/scripts/priority-nav-scroller.js" into your own site if your build process can accommodate ES6 modules.</p>
+
+<pre><code>import PriorityNavScroller from 'priority-nav-scroller';
+
+// Init with default setup
+const priorityNavScrollerDefault = PriorityNavScroller();
+
+// Init with all options at default setting
+const priorityNavScrollerDefault = PriorityNavScroller({
+  selector: '.nav-scroller',
+  navSelector: '.nav-scroller-nav',
+  contentSelector: '.nav-scroller-content',
+  itemSelector: '.nav-scroller-item',
+  buttonLeftSelector: '.nav-scroller-btn--left',
+  buttonRightSelector: '.nav-scroller-btn--right',
+  scrollStep: 80
+});
+
+// Init multiple nav scrollers with the same options
+let navScrollers = document.querySelectorAll('.nav-scroller');
+
+navScrollers.forEach((currentValue, currentIndex) => {
+  PriorityNavScroller({
+    selector: currentValue
+  });
+});
+</code></pre>
+
+
+      <h3>Options</h3>
+
+        <div class="table-wrapper">
+        <table class="table">
+          <tr>
+            <th>Property</th>
+            <th>Default</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><code>selector</code></td>
+            <td>'.nav-scroller'</td>
+            <td>String/Node</td>
+            <td>Container element selector.</td>
+          </tr>
+          <tr>
+            <td><code>navSelector</code></td>
+            <td>'.nav-scroller-nav'</td>
+            <td>String</td>
+            <td>Item element selector.</td>
+          </tr>
+          <tr>
+            <td><code>contentSelector</code></td>
+            <td>'.nav-scroller-content'</td>
+            <td>String</td>
+            <td>Content element selector.</td>
+          </tr>
+          <tr>
+            <td><code>itemSelector</code></td>
+            <td>'.nav-scroller-item'</td>
+            <td>String</td>
+            <td>Item element selector.</td>
+          </tr>
+          <tr>
+            <td><code>buttonLeftSelector</code></td>
+            <td>'.nav-scroller-btn--left'</td>
+            <td>String</td>
+            <td>Left button element selector.</td>
+          </tr>
+          <tr>
+            <td><code>buttonRightSelector</code></td>
+            <td>'.nav-scroller-btn--right'</td>
+            <td>String</td>
+            <td>Right button element selector.</td>
+          </tr>
+          <tr>
+            <td><code>scrollStep</code></td>
+            <td>80</td>
+            <td>Number/String</td>
+            <td>Amount to scroll on button click. 'average' gets the average link width.</td>
+          </tr>
+        </table>
+        </div>
+
+
+        <h3>Import Sass</h3>
+
+<pre><code>@import "node_modules/priority-nav-scroller/src/styles/priority-nav-scroller.scss";</code></pre>
+
+
+          <h3>Markup</h3>
+
+<pre><code>&lt;div class="nav-scroller"&gt;
+
+  &lt;nav class="nav-scroller-nav"&gt;
+    &lt;div class="nav-scroller-content"&gt;
+      &lt;a href="#" class="nav-scroller-item"&gt;Item 1&lt;/a&gt;
+      &lt;a href="#" class="nav-scroller-item"&gt;Item 2&lt;/a&gt;
+      &lt;a href="#" class="nav-scroller-item"&gt;Item 3&lt;/a&gt;
+      ...
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;button class="nav-scroller-btn nav-scroller-btn--left" aria-label="Scroll left"&gt;
+    ...
+  &lt;/button&gt;
+
+  &lt;button class="nav-scroller-btn nav-scroller-btn--right" aria-label="Scroll right"&gt;
+    ...
+  &lt;/button&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+
+
+          <h3>Using other tags</h3>
+
+          <p>The demos use a &lt;div&gt; for "nav-scroller-content" and &lt;a&gt; tags for the "nav-scroller-item" but you can also use a &lt;ul&gt; as below.</p>
+
+<pre><code>&lt;ul class="nav-scroller-content"&gt;
+  &lt;li class="nav-scroller-item"&gt;&lt;a href="#" class="nav-scroller-item"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+  ...
+</code></pre>
+
+          <p>The buttons use an svg for the arrow icon but this can be replaced with an image, text or html entities(&lt; &gt;, &larr; &rarr;, &#9668; &#9658;), just update the nav-scroller-button styles as needed.</p>
+
+        </div>
+
+
+        <div class="subsection">
+          <h2>Compatibility</h2>
+
+          <h3>Browser support</h3>
+
+          <p>Supports all modern browsers(Firefox, Chrome and Edge) released as of January 2018. For older browsers you may need to include polyfills for <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach" target="_blank" rel="noopener">Nodelist.forEach</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList" target="_blank" rel="noopener">Element.classList</a>.</p>
+        </div>
+
+
+
+        <div class="subsection">
+
+          <h2>Demo site</h2>
+          <p>Clone or download from Github.</p>
+
+<pre><code>$ npm install
+$ gulp serve
+</code></pre>
+
+        </div>
+
+
+        <div class="subsection">
+          <h3>Credits</h3>
+          
+          <p><a href="https://benfrain.com/a-horizontal-scrolling-navigation-pattern-for-touch-and-mouse-with-moving-current-indicator/" target="_blank" rel="noopener">A horizontal scrolling navigation pattern for touch and mouse with moving current indicator</a> by Ben Frain.<br>
+          <a href="https://css-tricks.com/priority-navigation-scrolling-dropdowns/" target="_blank" rel="noopener">A Priority+ Navigation With Scrolling and Dropdowns</a> by Micah Miller-Eshleman on CSS-Tricks.<br>
+          <a href="https://css-tricks.com/the-priority-navigation-pattern/" target="_blank" rel="noopener">The Priority+ Navigation Pattern</a> by Chris Coyier on CSS-Tricks.
+          </p>
+        </div>
+      
+      </div>
+    </div>
+
+
+
+    <footer class="fullwidth fullwidth--sm footer">
+      <div class="container">
+        Made by Nigel O Toole - <a href="http://www.purestructure.com" target="_blank" rel="noopener">pure structure</a>
+      </div>
+    </footer>
+
+
+
+    <script src="scripts/main.js" type="module"></script>
+
+  </body>
+</html>
